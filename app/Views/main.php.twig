@@ -1,0 +1,145 @@
+{% extends 'layouts/base.php.twig'%}
+
+
+{% block title %} CodeQuery - Home {% endblock %}
+
+
+{% block content %}
+<div class="bg-[var(--color-card-bg)] text-white rounded-xl p-6 mb-8 shadow flex items-center justify-between">
+   <div>
+      <h1 class="text-2xl font-bold ">Welcome Back, Ahmed Hassan <i class="ph ph-hand-waving"></i></h1>
+      <p class="text-gray-400 mt-1">Find answers to your technical questions and help others answer theirs.</p>
+   </div>
+
+   <a href="/ask"
+      class="ml-4 px-5 py-2 bg-spotify-green text-black font-semibold rounded-lg hover:bg-green-400 transition">
+       Ask
+   </a>
+</div>
+
+
+<section class="bg-spotify-black text-white py-10 border rounded border-[var(--color-border)]">
+   <div class="container mx-auto px-4">
+
+      <h2 class="text-3xl font-bold mb-8 text-spotify-green text-primary">Top Questions</h2>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+         <div class="bg-[var(--color-card-bg)] rounded-xl p-6 shadow hover:bg-spotify-lightgray transition">
+            <div class="flex justify-between items-center mb-3">
+               <span class="text-sm text-gray-400">5 answers</span>
+               <span class="text-sm text-gray-400">12 votes</span>
+            </div>
+            <a href="/question/1" class="block text-xl font-semibold text-white ">
+               How to learn PHP quickly and effectively?
+            </a>
+            <p class="text-sm text-gray-500 mt-2">asked 3 days ago</p>
+         </div>
+
+         <div class="bg-[var(--color-card-bg)] rounded-xl p-6 shadow hover:bg-spotify-lightgray transition">
+            <div class="flex justify-between items-center mb-3">
+               <span class="text-sm text-gray-400">3 answers</span>
+               <span class="text-sm text-gray-400">8 votes</span>
+            </div>
+            <a href="/question/2" class="block text-xl font-semibold text-white ">
+               What is the difference between SQL and NoSQL?
+            </a>
+            <p class="text-sm text-gray-500 mt-2">asked 1 week ago</p>
+         </div>
+
+         <div class="bg-[var(--color-card-bg)] rounded-xl p-6 shadow hover:bg-spotify-lightgray transition">
+            <div class="flex justify-between items-center mb-3">
+               <span class="text-sm text-gray-400">2 answers</span>
+               <span class="text-sm text-gray-400">6 votes</span>
+            </div>
+            <a href="/question/3" class="block text-xl font-semibold text-white ">
+               How to use Tailwind with PHP + Twig?
+            </a>
+            <p class="text-sm text-gray-500 mt-2">asked 2 days ago</p>
+         </div>
+
+      </div>
+
+      <div class="mt-8 text-center">
+         <a href="/questions"
+            class="inline-block px-6 py-3 bg-spotify-green text-black font-bold rounded-lg hover:bg-green-400 transition">
+            Browse All Questions
+         </a>
+      </div>
+
+   </div>
+</section>
+
+
+<section class="mt-12">
+   <h2 class="text-2xl font-bold mb-6 text-primary">Popular Tags</h2>
+
+   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- PHP Tag -->
+      <div class="bg-gray-800 p-5 rounded-xl shadow hover:shadow-lg transition flex items-center">
+         <img src="{{asset('images/lang/php.svg')}}" alt="PHP" class="w-10 h-10 mr-4">
+         <div>
+            <a href="/tags/php" class="text-lg font-semibold text-white ">PHP</a>
+            <p class="text-gray-400 text-sm">A popular scripting language</p>
+            <span class="text-gray-500 text-xs mt-1 block">120 questions</span>
+         </div>
+      </div>
+
+      <!-- JavaScript Tag -->
+      <div class="bg-gray-800 p-5 rounded-xl shadow hover:shadow-lg transition flex items-center">
+         <img src="{{asset('images/lang/js.svg')}}" alt="JavaScript" class="w-10 h-10 mr-4">
+         <div>
+            <a href="/tags/javascript" class="text-lg font-semibold text-white ">JavaScript</a>
+            <p class="text-gray-400 text-sm">Client-side and server-side scripting</p>
+            <span class="text-gray-500 text-xs mt-1 block">200 questions</span>
+         </div>
+      </div>
+
+      <!-- Python Tag -->
+      <div class="bg-gray-800 p-5 rounded-xl shadow hover:shadow-lg transition flex items-center">
+         <img src="{{asset('images/lang/python.svg')}}" alt="Python" class="w-10 h-10 mr-4">
+         <div>
+            <a href="/tags/python" class="text-lg font-semibold text-white ">Python</a>
+            <p class="text-gray-400 text-sm">High-level general-purpose language</p>
+            <span class="text-gray-500 text-xs mt-1 block">150 questions</span>
+         </div>
+      </div>
+
+      <!-- Nodejs Tag -->
+      <div class="bg-gray-800 p-5 rounded-xl shadow hover:shadow-lg transition flex items-center">
+         <img src="{{asset('images/lang/nodejs.svg')}}" alt="nodejs" class="w-10 h-10 mr-4">
+         <div>
+            <a href="/tags/nodejs" class="text-lg font-semibold text-white ">NodeJs</a>
+            <p class="text-gray-400 text-sm">JavaScript runtime for server-side programming</p>
+            <span class="text-gray-500 text-xs mt-1 block">150 questions</span>
+         </div>
+      </div>
+
+      <!-- Java Tag -->
+      <div class="bg-gray-800 p-5 rounded-xl shadow hover:shadow-lg transition flex items-center">
+         <img src="{{asset('images/lang/java.svg')}}" alt=" Java" class="w-10 h-10 mr-4">
+         <div>
+            <a href="/tags/java" class="text-lg font-semibold text-white hover:text-spotify-green">Java</a>
+            <p class="text-gray-400 text-sm">A high-level, class-based programming language</p>
+            <span class="text-gray-500 text-xs mt-1 block">140 questions</span>
+         </div>
+      </div>
+
+      <!-- C++ Tag -->
+      <div class="bg-gray-800 p-5 rounded-xl shadow hover:shadow-lg transition flex items-center">
+         <img src="{{asset('images/lang/cpp.svg')}}" alt=" C++" class="w-10 h-10 mr-4">
+         <div>
+            <a href="/tags/cpp" class="text-lg font-semibold text-white hover:text-spotify-green">C++</a>
+            <p class="text-gray-400 text-sm">General-purpose programming language with performance focus</p>
+            <span class="text-gray-500 text-xs mt-1 block">110 questions</span>
+         </div>
+      </div>
+
+
+   </div>
+</section>
+
+
+
+{% endblock %}

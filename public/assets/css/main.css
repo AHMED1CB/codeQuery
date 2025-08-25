@@ -1,0 +1,65 @@
+:root {
+    --color-primary: #1DB954;
+    --color-secondary: #191414;
+    --color-accent: #1ED760;
+    --color-bg: #F3F3F3;
+    --color-card-bg: #FFFFFF;
+    --color-text: #191414;
+    --color-border: #D9D9D9;
+    --content-height : calc(100vh - 90px)
+}
+
+.dark {
+    --color-primary: #1DB954;
+    --color-secondary: #121212;
+    --color-accent: #1ED760;
+    --color-bg: #121212;
+    --color-card-bg: #181818;
+    --color-text: #FFFFFF;
+    --color-border: #282828;
+}
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: 'Cairo' !important;
+    height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+}
+header{
+    min-height: 82px;
+}
+
+a{
+    color: var(--color-text) !important;
+}
+
+
+::-webkit-scrollbar{
+    display: none;
+}
+
+aside.sidebar{
+    border: 1px solid var(--color-border);
+    margin: 12px 0;
+}
+
+
+.page-container{
+    overflow: hidden;
+}
+
+
+.main-content{
+    flex-grow: 1;
+    margin: 12px;
+    padding:20px 12px;
+    border-radius:  12px ;
+    border: 1px solid var(--color-border);
+    overflow: auto;
+    height: var(--content-height);
+}
+
+.text-primary{
+    color: var(--color-primary);
+}
