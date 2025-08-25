@@ -1,0 +1,37 @@
+{% extends "layouts/base.php.twig" %}
+{% block title %}
+	CodeQuery - Login
+{% endblock %}
+
+{% block content %}
+
+	<section class="max-w-md mx-auto p-6 bg-[var(--color-card-bg)] border border-[var(--color-border)] rounded-xl shadow">
+		<h1 class="text-2xl font-bold text-[var(--color-primary)] mb-6">Create Account</h1>
+
+		<form class="space-y-4">
+			
+			<div>
+				<label for="username" class="block text-sm mb-1 text-[var(--color-text)]/80">Username</label>
+				<input id="username" type="text" placeholder="Choose a username" class="w-full rounded-lg bg-[var(--color-bg)] border border-[var(--color-border)] text-[var(--color-text)] px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]">
+			</div>
+
+			
+			<div>
+				<label for="password" class="block text-sm mb-1 text-[var(--color-text)]/80">Password</label>
+				<input id="password" type="password" placeholder="••••••••" class="w-full rounded-lg bg-[var(--color-bg)] border border-[var(--color-border)] text-[var(--color-text)] px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]">
+			</div>
+
+
+			<div class="flex items-center justify-between">
+				<a href="/auth/register" class="text-sm text-[var(--color-primary)] hover:text-[var(--color-accent)]">Create New Account</a>
+			</div>
+
+
+			<button type="submit" class="w-full bg-[var(--color-primary)] hover:bg-[var(--color-accent)] text-white font-medium px-4 py-2 rounded-lg transition">
+				Login
+			</button>
+		</form>
+	</section>
+
+
+{% endblock %}

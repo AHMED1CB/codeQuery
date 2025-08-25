@@ -37,13 +37,23 @@
 
 				</div>
 
-				<nav class="px-4">
+				<nav class="px-4 flex">
+					{% if user %}
 
-					<a class="mx-2 p-2 cursor-pointer  flex items-center justify-center">
-						<i class="ph ph-user border w-10 h-10 flec items-center justify-center mr-5 rounded-full block"></i>
-						<span class="userrname">Ahmed Hassan</span>
-					</a>
+						<a class="mx-2 p-2 cursor-pointer  flex items-center justify-center">
+							<i class="ph ph-user border w-10 h-10 flec items-center justify-center mr-5 rounded-full block"></i>
+							<span class="userrname">Ahmed Hassan</span>
+						</a>
+
+					{% else %}
+						<a href="/auth/login" class="mx-2 p-2 cursor-pointer flex items-center justify-center">Login</a>
+						<a href="/auth/register" class="mx-2 rounded py-1 px-3  duration border-[var(--color-primary)] hover:bg-[var(--color-primary)] transition text-white
+								cursor-pointer flex items-center justify-center border">Register</a>
+
+					{% endif %}
+
 				</nav>
+
 			</header>
 
 

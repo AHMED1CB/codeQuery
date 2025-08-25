@@ -31,4 +31,16 @@ class RoutesController extends Controller {
         return $this->display('users.profile' , ['username'=> $username]);
     }
 
+    public function askPage(){
+        return $this->display('question.ask');
+    }
+
+    public function registerPage(){
+        return $this->display('auth.register');
+    }
+
+    public function loginPage(){
+        return $this->display('auth.login');
+    }
+
 }

@@ -6,7 +6,7 @@ return [
         'password' => 'ahmed1cb',
         'host' => 'localhost',
         'port' => 3306,
-        'database' => 'bookhunter'
+        'database' => 'codequery'
     ]
 
 ];
