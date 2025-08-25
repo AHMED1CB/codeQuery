@@ -1,0 +1,87 @@
+{% extends 'layouts/base.php.twig' %}
+
+{% block title %}CodeQuery - Users
+{% endblock %}
+
+{% block content %}
+
+
+	<div
+		class="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] p-6">
+
+		<!-- Page Title -->
+		<h1 class="text-3xl font-bold mb-6 text-[var(--color-primary)]">All Users</h1>
+
+		<!-- Filters Section -->
+		<section class="bg-[var(--color-card-bg)] p-5 rounded-xl shadow border border-[var(--color-border)] mb-6 flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
+
+			<div class="flex flex-wrap gap-2 items-center">
+				<span class="text-[var(--color-primary)] font-semibold">Sort by:</span>
+				<button class="px-3 py-1 rounded-full border border-[var(--color-border)] bg-[var(--color-bg)] text-[var(--color-text)] hover:bg-[var(--color-primary)] hover:text-white transition">Reputation</button>
+				<button class="px-3 py-1 rounded-full border border-[var(--color-border)] bg-[var(--color-bg)] text-[var(--color-text)] hover:bg-[var(--color-primary)] hover:text-white transition">Questions</button>
+				<button class="px-3 py-1 rounded-full border border-[var(--color-border)] bg-[var(--color-bg)] text-[var(--color-text)] hover:bg-[var(--color-primary)] hover:text-white transition">Answers</button>
+				<button class="px-3 py-1 rounded-full border border-[var(--color-border)] bg-[var(--color-bg)] text-[var(--color-text)] hover:bg-[var(--color-primary)] hover:text-white transition">Newest</button>
+			</div>
+
+			<button class="px-5 py-2 rounded bg-[var(--color-primary)] text-white hover:bg-[var(--color-accent)] transition">Apply Filters</button>
+		</section>
+
+		<!-- Users Grid -->
+		<div
+			class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+
+			<!-- User 1 -->
+			<div class="bg-[var(--color-card-bg)] p-5 rounded-xl shadow border border-[var(--color-border)] hover:shadow-lg transition text-center">
+				<img src="https://i.pravatar.cc/100?img=1" alt="User Avatar" class="w-20 h-20 rounded-full mx-auto mb-3">
+				<h3 class="text-lg font-semibold mb-1 hover:text-[var(--color-accent)] cursor-pointer">Alice Johnson</h3>
+				<div class="text-sm text-gray-400">Reputation: 1500</div>
+				<div class="text-xs text-gray-500 mt-2 flex justify-around">
+					<span>12 Questions</span>
+					<span>34 Answers</span>
+				</div>
+			</div>
+
+			<!-- User 2 -->
+			<div class="bg-[var(--color-card-bg)] p-5 rounded-xl shadow border border-[var(--color-border)] hover:shadow-lg transition text-center">
+				<img src="https://i.pravatar.cc/100?img=18" alt="User Avatar" class="w-20 h-20 rounded-full mx-auto mb-3">
+				<h3 class="text-lg font-semibold mb-1 hover:text-[var(--color-accent)] cursor-pointer">Bob Smith</h3>
+				<div class="text-sm text-gray-400">Reputation: 2400</div>
+				<div class="text-xs text-gray-500 mt-2 flex justify-around">
+					<span>20 Questions</span>
+					<span>50 Answers</span>
+				</div>
+			</div>
+
+			<!-- User 3 -->
+			<div class="bg-[var(--color-card-bg)] p-5 rounded-xl shadow border border-[var(--color-border)] hover:shadow-lg transition text-center">
+				<img src="https://i.pravatar.cc/100?img=3" alt="User Avatar" class="w-20 h-20 rounded-full mx-auto mb-3">
+				<h3 class="text-lg font-semibold mb-1 hover:text-[var(--color-accent)] cursor-pointer">Charlie Davis</h3>
+				<div class="text-sm text-gray-400">Reputation: 980</div>
+				<div class="text-xs text-gray-500 mt-2 flex justify-around">
+					<span>5 Questions</span>
+					<span>12 Answers</span>
+				</div>
+			</div>
+
+			<!-- User 4 -->
+			<div class="bg-[var(--color-card-bg)] p-5 rounded-xl shadow border border-[var(--color-border)] hover:shadow-lg transition text-center">
+				<img src="https://i.pravatar.cc/100?img=55" alt="User Avatar" class="w-20 h-20 rounded-full mx-auto mb-3">
+				<h3 class="text-lg font-semibold mb-1 hover:text-[var(--color-accent)] cursor-pointer">Lee</h3>
+				<div class="text-sm text-gray-400">Reputation: 1720</div>
+				<div class="text-xs text-gray-500 mt-2 flex justify-around">
+					<span>15 Questions</span>
+					<span>28 Answers</span>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- Pagination -->
+		<div class="mt-8 flex justify-center space-x-2">
+			<a href="#" class="px-4 py-2 bg-[var(--color-secondary)] rounded hover:bg-[var(--color-border)] transition text-[var(--color-text)]">1</a>
+			<a href="#" class="px-4 py-2 bg-[var(--color-secondary)] rounded hover:bg-[var(--color-border)] transition text-[var(--color-text)]">2</a>
+			<a href="#" class="px-4 py-2 bg-[var(--color-secondary)] rounded hover:bg-[var(--color-border)] transition text-[var(--color-text)]">3</a>
+		</div>
+
+	</div>
+{% endblock %}

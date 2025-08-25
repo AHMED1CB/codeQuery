@@ -1,0 +1,90 @@
+{% extends 'layouts/base.php.twig' %}
+
+{% block title %}CodeQuery - Tags
+{% endblock %}
+
+{% block content %}
+
+	<div
+		class="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] p-6">
+
+		<!-- Page Title -->
+		<h1 class="text-3xl font-bold mb-6 text-[var(--color-primary)]">All Tags</h1>
+
+		<!-- Filters Section -->
+		<section class="bg-[var(--color-card-bg)] p-5 rounded-xl shadow border border-[var(--color-border)] mb-6 flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
+
+			<div class="flex flex-wrap gap-2 items-center">
+				<span class="text-[var(--color-primary)] font-semibold">Sort by:</span>
+				<button class="px-3 py-1 rounded-full border border-[var(--color-border)] bg-[var(--color-bg)] text-[var(--color-text)] hover:bg-[var(--color-primary)] hover:text-white transition">Popularity</button>
+				<button class="px-3 py-1 rounded-full border border-[var(--color-border)] bg-[var(--color-bg)] text-[var(--color-text)] hover:bg-[var(--color-primary)] hover:text-white transition">Questions Count</button>
+				<button class="px-3 py-1 rounded-full border border-[var(--color-border)] bg-[var(--color-bg)] text-[var(--color-text)] hover:bg-[var(--color-primary)] hover:text-white transition">Newest</button>
+			</div>
+
+			<button class="px-5 py-2 rounded bg-[var(--color-primary)] text-white hover:bg-[var(--color-accent)] transition">Apply Filters</button>
+		</section>
+
+		<!-- Tags Grid -->
+		<div
+			class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+
+			<!-- Tag 1 -->
+			<div class="bg-[var(--color-card-bg)] p-5 rounded-xl shadow border border-[var(--color-border)] hover:shadow-lg transition">
+				<div class="flex justify-between items-center mb-2">
+					<span class="text-lg font-semibold hover:text-[var(--color-accent)] cursor-pointer">PHP</span>
+					<span class="text-sm text-gray-400">120 questions</span>
+				</div>
+				<div class="text-xs text-gray-500 flex flex-wrap gap-1">
+					<span class="bg-[var(--color-bg)] px-2 py-0.5 rounded hover:bg-[var(--color-primary)] hover:text-white cursor-pointer">Laravel</span>
+					<span class="bg-[var(--color-bg)] px-2 py-0.5 rounded hover:bg-[var(--color-primary)] hover:text-white cursor-pointer">Symfony</span>
+				</div>
+			</div>
+
+			<!-- Tag 2 -->
+			<div class="bg-[var(--color-card-bg)] p-5 rounded-xl shadow border border-[var(--color-border)] hover:shadow-lg transition">
+				<div class="flex justify-between items-center mb-2">
+					<span class="text-lg font-semibold hover:text-[var(--color-accent)] cursor-pointer">JavaScript</span>
+					<span class="text-sm text-gray-400">200 questions</span>
+				</div>
+				<div class="text-xs text-gray-500 flex flex-wrap gap-1">
+					<span class="bg-[var(--color-bg)] px-2 py-0.5 rounded hover:bg-[var(--color-primary)] hover:text-white cursor-pointer">React</span>
+					<span class="bg-[var(--color-bg)] px-2 py-0.5 rounded hover:bg-[var(--color-primary)] hover:text-white cursor-pointer">Vue</span>
+				</div>
+			</div>
+
+			<!-- Tag 3 -->
+			<div class="bg-[var(--color-card-bg)] p-5 rounded-xl shadow border border-[var(--color-border)] hover:shadow-lg transition">
+				<div class="flex justify-between items-center mb-2">
+					<span class="text-lg font-semibold hover:text-[var(--color-accent)] cursor-pointer">Python</span>
+					<span class="text-sm text-gray-400">180 questions</span>
+				</div>
+				<div class="text-xs text-gray-500 flex flex-wrap gap-1">
+					<span class="bg-[var(--color-bg)] px-2 py-0.5 rounded hover:bg-[var(--color-primary)] hover:text-white cursor-pointer">Django</span>
+					<span class="bg-[var(--color-bg)] px-2 py-0.5 rounded hover:bg-[var(--color-primary)] hover:text-white cursor-pointer">Flask</span>
+				</div>
+			</div>
+
+			<!-- Tag 4 -->
+			<div class="bg-[var(--color-card-bg)] p-5 rounded-xl shadow border border-[var(--color-border)] hover:shadow-lg transition">
+				<div class="flex justify-between items-center mb-2">
+					<span class="text-lg font-semibold hover:text-[var(--color-accent)] cursor-pointer">Node.js</span>
+					<span class="text-sm text-gray-400">90 questions</span>
+				</div>
+				<div class="text-xs text-gray-500 flex flex-wrap gap-1">
+					<span class="bg-[var(--color-bg)] px-2 py-0.5 rounded hover:bg-[var(--color-primary)] hover:text-white cursor-pointer">Express</span>
+					<span class="bg-[var(--color-bg)] px-2 py-0.5 rounded hover:bg-[var(--color-primary)] hover:text-white cursor-pointer">NestJS</span>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- Pagination -->
+		<div class="mt-8 flex justify-center space-x-2">
+			<a href="#" class="px-4 py-2 bg-[var(--color-secondary)] rounded hover:bg-[var(--color-border)] transition text-[var(--color-text)]">1</a>
+			<a href="#" class="px-4 py-2 bg-[var(--color-secondary)] rounded hover:bg-[var(--color-border)] transition text-[var(--color-text)]">2</a>
+			<a href="#" class="px-4 py-2 bg-[var(--color-secondary)] rounded hover:bg-[var(--color-border)] transition text-[var(--color-text)]">3</a>
+		</div>
+
+	</div>
+
+{% endblock %}

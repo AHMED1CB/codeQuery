@@ -15,4 +15,20 @@ class RoutesController extends Controller {
 
     }
 
+    public function questionsPage(){
+        return $this->display('question.display');
+    }
+
+    public function tagsPage(){
+        return $this->display('tags.display');
+    }
+
+    public function usersPage(){
+        return $this->display('users.display');
+    }
+
+     public function userProfile($username){
+        return $this->display('users.profile' , ['username'=> $username]);
+    }
+
 }

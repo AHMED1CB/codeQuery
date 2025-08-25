@@ -1,24 +1,29 @@
 <?php
 
 namespace App\Core;
-
+use \App\Core\Response;
 
 
 class Router
 {
 
-    static $on404 = null;
     static $routes = [];
+
+    public static $_on404 = null ;
+
+
+
     public static function new(string $path, string $method, $event): void
     {
 
     
-
-        self::$routes[] = [
+        $route = [
             'method' => $method,
             'endpoint' => $path,
             'callback' => $event,
         ];
+
+        self::$routes[] = $route;
 
          
     }
@@ -27,6 +32,7 @@ class Router
 
     public static function _run()
     {
+
 
         $currentEndpoint = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         $currentEndpoint = trim($currentEndpoint ,'/');
@@ -56,24 +62,26 @@ class Router
                 }
 
                     return call_user_func_array($route['callback'], $matches);
-
-
             }
-
-              return call_user_func(self::$on404);
-
             
+            
+            
+            
+            
+        }
         
+        if (is_callable(self::$_on404)){
+            call_user_func(self::$_on404);
+        }else{
+            Response::status(404);
+            echo ("404 Not Foussnd");
+            return ;
         }
 
 
-
     }
 
 
-    public static function _on404(callable $callback) {
-        self::$on404  = $callback;
-    }
 
 
 }

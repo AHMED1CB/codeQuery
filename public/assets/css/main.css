@@ -63,3 +63,31 @@ aside.sidebar{
 .text-primary{
     color: var(--color-primary);
 }
+
+/* Global Styles */
+.question-card {
+    transition: all 0.3s ease;
+}
+
+.question-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.pagination a:hover {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.pagination a {
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+}
+
+.pagination a:hover {
+    background-color: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
+}
+
