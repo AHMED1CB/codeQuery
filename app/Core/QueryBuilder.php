@@ -71,7 +71,15 @@ class QueryBuilder
 
     public function where($column, $value, $operator = "=")
     {
-        $this->conditions[] = " `{$column}` {$operator} ?";
+        $this->conditions[] = [" `{$column}` {$operator} ?" , 'AND'];
+
+        $this->bindings[] = $value;
+        return $this;
+    }
+
+    public function orWhere($column, $value, $operator = "=")
+    {
+        $this->conditions[] = [" `{$column}` {$operator} ?" , 'OR'];
 
         $this->bindings[] = $value;
         return $this;
@@ -135,11 +143,18 @@ class QueryBuilder
             $query .= " `{$this->table}` SET " . implode(', ', $this->set);
         }
 
-        if (!empty($this->conditions)) {
-
-            $query .= " WHERE " . implode(' AND ', $this->conditions);
+        if ($this->conditions){
+            $query .= " WHERE ";
         }
+        for ($i = 0; $i < count($this->conditions); $i++) {
+            if ($i == 0){
+                $query .= $this->conditions[$i][0];
+                continue;
+            }
 
+            $query .= ' ' . $this->conditions[$i][1] . " " . $this->conditions[$i][0];
+
+        }
 
 
 
@@ -157,7 +172,6 @@ class QueryBuilder
 
     public function runQuery($query, $bindings = []): \PDOStatement
     {
-
 
 
         $run = $this->connection->prepare($query);

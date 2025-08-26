@@ -14,6 +14,7 @@ class Response{
 
     static public function display(array $data){
         echo self::json($data);
+        return;
     }
     
 
@@ -22,7 +23,7 @@ class Response{
     }
 
 
-      public function redirect(string $url) {
+      static public function redirect(string $url) {
         header("Location: $url");
         exit;
     }

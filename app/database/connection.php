@@ -41,7 +41,7 @@ class Connection{
             $this->connection = $pdo;
         }catch(\PDOException $e){
             $pdo = null;
-            print_r("Connection Error: {$e->getMessage()}");
+            print_r("Connection Error");
 
         }
 

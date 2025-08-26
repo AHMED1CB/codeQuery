@@ -86,7 +86,6 @@ It allows programmers to ask coding questions, share answers, and earn reputatio
 - **users** → id, name, email, password, reputation.  
 - **questions** → id, user_id, title, body, views.  
 - **answers** → id, question_id, user_id, body, is_accepted.  
-- **comments** → id, parent_id, parent_type, user_id, body.  
 - **tags** → id, name.  
 - **question_tags** → question_id, tag_id.  
 - **votes** → id, user_id, parent_id, parent_type, vote_type.  

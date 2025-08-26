@@ -1,25 +1,60 @@
-{% extends "layouts/base.php.twig" %}
-{% block title %}CodeQuery - Ask
-{% endblock %}
-
-{% block pageHead %}
+{% extends "layouts/base.php.twig" %} {% block title %}CodeQuery - Ask {%
+endblock %} {% block pageHead %}
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css"
+/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
 
-{% endblock %}
-{#  I Will Make a  #}
-{% block content %}
+{% endblock %} {# I Will Make a #} {% block content %}
 <main class="max-w-5xl mx-auto p-6">
   <h1 class="text-2xl font-bold text-green-400 mb-6">Create New Question</h1>
 
   <form class="space-y-5">
-    <!-- Title -->
     <div>
-      <label for="title" class="block text-sm font-medium text-gray-300 mb-2">Question Title</label>
-      <input type="text" id="title" placeholder="Enter a descriptive title"
-        class="w-full rounded-lg bg-gray-800 border border-gray-700 text-gray-100 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500">
+      <label for="tags" class="block text-sm mb-1 text-[var(--color-text)]/80"
+        >Tags</label
+      >
+      <input
+        id="tags"
+        type="text"
+        placeholder="Add tags separated by commas"
+        class="w-full rounded-lg bg-[var(--color-bg)] border border-[var(--color-border)] text-[var(--color-text)] px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
+      />
+      <div class="mt-3 flex flex-wrap gap-2">
+        <span
+          class="px-3 py-1 bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-sm rounded-full"
+          >php</span
+        >
+        <span
+          class="px-3 py-1 bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-sm rounded-full"
+          >javascript</span
+        >
+        <span
+          class="px-3 py-1 bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-sm rounded-full"
+          >mysql</span
+        >
+        <span
+          class="px-3 py-1 bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-sm rounded-full"
+          >laravel</span
+        >
+      </div>
+    </div>
+
+    <!-- Title -->
+
+    <div>
+      <label for="title" class="block text-sm font-medium text-gray-300 mb-2"
+        >Question Title</label
+      >
+      <input
+        type="text"
+        id="title"
+        placeholder="Enter a descriptive title"
+        class="w-full rounded-lg bg-gray-800 border border-gray-700 text-gray-100 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+      />
     </div>
 
     <!-- Description with Markdown -->
@@ -29,13 +64,18 @@
       </label>
       <div class="grid grid-cols-1 gap-4">
         <!-- Input -->
-        <textarea id="desc" rows="12"
+        <textarea
+          id="desc"
+          rows="12"
           placeholder="Write your question using Markdown. Example:\n\n```js\nconsole.log('Hello');\n```"
-          class="w-full rounded-lg bg-gray-800 border border-gray-700 text-gray-100 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"></textarea>
+          class="w-full rounded-lg bg-gray-800 border border-gray-700 text-gray-100 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+        ></textarea>
 
         <!-- Preview -->
-        <div id="preview"
-          class="prose prose-invert max-w-none bg-gray-900 p-4 rounded-lg border border-gray-700 overflow-auto">
+        <div
+          id="preview"
+          class="prose prose-invert max-w-none bg-gray-900 p-4 rounded-lg border border-gray-700 overflow-auto"
+        >
           <p class="text-gray-400">Live preview will appear here...</p>
         </div>
       </div>
@@ -43,17 +83,16 @@
 
     <!-- Submit -->
     <div>
-      <button type="submit"
-        class="w-full bg-green-500 hover:bg-green-600 text-white font-medium px-4 py-2 rounded-lg transition">
+      <button
+        type="submit"
+        class="w-full bg-green-500 hover:bg-green-600 text-white font-medium px-4 py-2 rounded-lg transition"
+      >
         Publish Question
       </button>
     </div>
   </form>
 </main>
 
-
+{% endblock %} {% block scripts %}
+<script src="{{ asset('js/marker.js') }}"></script>
 {% endblock %}
-{% block scripts %}
-    <script src="{{asset('js/marker.js')}}"></script>
-{% endblock %}
-

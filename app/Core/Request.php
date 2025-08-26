@@ -3,24 +3,26 @@
 namespace App\Core;
 
 class Request{
-
-    protected static $_request = $_REQUEST;
     static public function input(string $name = ''){
 
-        return htmlspecialchars(self::$_request[$name]);    
+
+        return htmlspecialchars($_REQUEST[$name] ?? '');    
 
     }
 
-    static public function group(...$names ){
+    static public function group(){
 
 
         $group = [];
+        $names = func_get_args();
 
         foreach($names as $name){
 
             $group[$name] = htmlspecialchars(self::input($name));
 
         }
+
+        return $group;
 
 
     }

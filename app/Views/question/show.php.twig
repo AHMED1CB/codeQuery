@@ -1,0 +1,97 @@
+{% extends "layouts/base.php.twig" %}
+
+{# Will Replace With Question Title #}
+{% block title %}
+	CodeQuery - Show Question
+{% endblock %}
+
+
+{% block content %}
+	<section
+		class="max-w-4xl mx-auto p-6 bg-[var(--color-card-bg)] border border-[var(--color-border)] rounded-xl shadow space-y-8">
+		<!-- Question Header -->
+		<div>
+			<h1 class="text-2xl font-bold text-[var(--color-primary)] mb-3">
+				How to connect PHP with MySQL?
+			</h1>
+			<div class="flex items-center gap-3 text-sm text-[var(--color-text)]/70">
+				<img src="https://i.pravatar.cc/40" class="w-8 h-8 rounded-full border" alt="User">
+				<span>Ahmed Hassan</span>
+				<span>•</span>
+				<span>Asked on Aug 20, 2025</span>
+			</div>
+		</div>
+
+		<!-- Description -->
+		<div class="prose prose-invert max-w-none">
+			<p>I am trying to connect my
+				<code>PHP</code>
+				application with a
+				<code>MySQL</code>
+				database.</p>
+			<p>What is the recommended way to establish the connection securely?</p>
+			<pre><code class="language-php">
+// Example connection
+$pdo = new PDO("mysql:host=localhost;dbname=test", "root", "password");
+    </code></pre>
+		</div>
+
+		<!-- Tags -->
+		<div class="flex flex-wrap gap-2">
+			<span class="px-3 py-1 bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-sm rounded-full">php</span>
+			<span class="px-3 py-1 bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-sm rounded-full">mysql</span>
+			<span class="px-3 py-1 bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-sm rounded-full">database</span>
+		</div>
+
+		<!-- Share -->
+		<div class="flex items-center gap-4">
+			<button class="text-sm text-[var(--color-primary)] hover:underline">Share</button>
+			<button class="text-sm text-[var(--color-primary)] hover:underline">Edit</button>
+			<button class="text-sm text-red-500 hover:underline">Report</button>
+		</div>
+
+		<!-- Answers Section -->
+		<div class="space-y-6">
+			<h2 class="text-xl font-semibold text-[var(--color-text)]">2 Answers</h2>
+
+			<!-- Answer 1 -->
+			<div class="p-4 bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg space-y-3">
+				<div class="prose prose-invert max-w-none">
+					<p>You can use PDO which is secure and flexible.</p>
+					<pre><code class="language-php">
+$pdo = new PDO("mysql:host=localhost;dbname=test", "root", "password");
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        </code></pre>
+				</div>
+				<div class="flex items-center gap-3 text-sm text-[var(--color-text)]/70">
+					<img src="https://i.pravatar.cc/35" class="w-7 h-7 rounded-full border" alt="User">
+					<span>Mohamed Ali</span>
+					<span>•</span>
+					<span>Answered on Aug 22, 2025</span>
+				</div>
+			</div>
+
+			<!-- Answer 2 -->
+			<div class="p-4 bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg space-y-3">
+				<div class="prose prose-invert max-w-none">
+					<p>If you don’t need PDO, you can use
+						<code>mysqli</code>
+						instead.</p>
+					<pre><code class="language-php">
+$conn = new mysqli("localhost", "root", "password", "test");
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+        </code></pre>
+				</div>
+				<div class="flex items-center gap-3 text-sm text-[var(--color-text)]/70">
+					<img src="https://i.pravatar.cc/36" class="w-7 h-7 rounded-full border" alt="User">
+					<span>Sarah Ahmed</span>
+					<span>•</span>
+					<span>Answered on Aug 23, 2025</span>
+				</div>
+			</div>
+		</div>
+	</section>
+
+{% endblock %}

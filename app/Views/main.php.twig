@@ -7,18 +7,21 @@
 
 
 {% block content %}
-	<div class="bg-[var(--color-card-bg)] text-white rounded-xl p-6 mb-8 shadow flex items-center justify-between">
-		<div>
-			<h1 class="text-2xl font-bold ">Welcome, Ahmed Hassan
-				<i class="ph ph-hand-waving"></i>
-			</h1>
-			<p class="text-gray-400 mt-1">Find answers to your technical questions and help others answer theirs.</p>
-		</div>
+	{% if user %}
 
-		<a href="/ask" class="ml-4 px-5 py-2 bg-spotify-green text-black font-semibold rounded-lg hover:bg-green-400 transition">
-			Ask
-		</a>
-	</div>
+		<div class="bg-[var(--color-card-bg)] text-white rounded-xl p-6 mb-8 shadow flex items-center justify-between">
+			<div>
+				<h1 class="text-2xl font-bold ">Welcome, Ahmed Hassan
+					<i class="ph ph-hand-waving"></i>
+				</h1>
+				<p class="text-gray-400 mt-1">Find answers to your technical questions and help others answer theirs.</p>
+			</div>
+
+			<a href="/ask" class="ml-4 px-5 py-2 bg-spotify-green text-black font-semibold rounded-lg hover:bg-green-400 transition">
+				Ask
+			</a>
+		</div>
+	{% endif %}
 
 
 	<section class="bg-spotify-black text-white py-10 border rounded border-[var(--color-border)]">
@@ -192,7 +195,21 @@
 
 		</div>
 
-	</section>
 
+	</section>
+	{% if not user %}
+		<section class="bg-[var(--color-card-bg)] border border-[var(--color-border)] rounded-2xl p-6 text-center shadow-sm">
+			<h2 class="text-xl font-semibold text-[var(--color-text)] mb-3">
+				Want to see more features?
+			</h2>
+			<p class="text-[var(--color-text)]/70 mb-6">
+				Login to unlock full access, interact with the community, and ask your own questions.
+			</p>
+			<a href="/auth/login" class="inline-block bg-[var(--color-primary)] text-white px-6 py-2 rounded-full font-medium hover:bg-[var(--color-accent)] transition">
+				Login for More
+			</a>
+		</section>
+
+	{% endif %}
 
 {% endblock %}

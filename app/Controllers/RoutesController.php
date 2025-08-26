@@ -1,8 +1,7 @@
 <?php
 
 namespace App\Controllers;
-use App\Core\DB;
-
+use App\Core\Request;
 
 
 
@@ -36,7 +35,9 @@ class RoutesController extends Controller {
     }
 
     public function registerPage(){
-        return $this->display('auth.register');
+        $error = Request::input('err');
+
+        return $this->display('auth.register' , ['error' => $error ?? null]);
     }
 
     public function loginPage(){

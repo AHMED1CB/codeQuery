@@ -74,7 +74,7 @@ class Router
             call_user_func(self::$_on404);
         }else{
             Response::status(404);
-            echo ("404 Not Foussnd");
+            echo ("404 Not Found");
             return ;
         }
 
