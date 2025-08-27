@@ -18,7 +18,7 @@ Router::new('/' , "GET" , [RoutesController::class , 'mainPage']);
 Router::new('/questions' , "GET" , [RoutesController::class , 'questionsPage']);
 Router::new('/ask' , "GET" , [RoutesController::class , 'askPage']);
 
-Router::new('/question/:question' , "GET" , [QuestionsController::class , 'showQuestion']);
+Router::new('/questions/:question' , "GET" , [QuestionsController::class , 'showQuestion']);
 
 
 // Tags
@@ -36,6 +36,7 @@ Router::new('/auth/register' , "GET" , [RoutesController::class , 'registerPage'
 Router::new('/auth/login' , "GET" , [RoutesController::class , 'loginPage']);
 
 Router::new('/auth/register' , "POST" , [AuthController::class , 'RegisterUser']);
+Router::new('/auth/login' , "POST" , [AuthController::class , 'LoginUser']);
 
 
 

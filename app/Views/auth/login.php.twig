@@ -4,21 +4,39 @@
 {% endblock %}
 
 {% block content %}
+	<div class="error_container">
+
+		{% if error %}
+			<div id="alert" class="max-w-xl mx-auto mt-6 p-4 rounded-lg shadow-md flex items-start justify-between bg-gray-50 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-gray-800 dark:text-gray-100">
+				<div class="flex items-center space-x-3">
+					<i class="ph ph-warning"></i>
+					<p class="text-sm font-medium">
+						{{error}}
+					</p>
+				</div>
+				<button onclick="document.getElementById('alert').remove()" class="ml-4 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
+
+					<i class="ph ph-x-circle text-xl"></i>
+				</button>
+			</div>
+		{% endif %}
+
+	</div>
 
 	<section class="w-[85%]  mx-auto my-6 p-6 bg-[var(--color-card-bg)] border border-[var(--color-border)] rounded-xl shadow">
 		<h1 class="text-2xl font-bold text-[var(--color-primary)] mb-6">Create Account</h1>
 
-		<form class="space-y-4 ">
-			
+		<form class="space-y-4 " method="POST" action="/auth/login">
+
 			<div>
 				<label for="username" class="block text-sm mb-1 text-[var(--color-text)]/80">Username</label>
-				<input id="username" type="text" placeholder="Choose a username" class="w-full rounded-lg bg-[var(--color-bg)] border border-[var(--color-border)] text-[var(--color-text)] px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]">
+				<input id="username" name="username" type="text" placeholder="Choose a username" class="w-full rounded-lg bg-[var(--color-bg)] border border-[var(--color-border)] text-[var(--color-text)] px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]">
 			</div>
 
-			
+
 			<div>
 				<label for="password" class="block text-sm mb-1 text-[var(--color-text)]/80">Password</label>
-				<input id="password" type="password" placeholder="••••••••" class="w-full rounded-lg bg-[var(--color-bg)] border border-[var(--color-border)] text-[var(--color-text)] px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]">
+				<input id="password" name="password" type="password" placeholder="••••••••" class="w-full rounded-lg bg-[var(--color-bg)] border border-[var(--color-border)] text-[var(--color-text)] px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]">
 			</div>
 
 
@@ -33,5 +51,11 @@
 		</form>
 	</section>
 
+
+{% endblock %}
+
+{% block scripts %}
+
+	<script src="{{asset('js/validate.js')}}"></script>
 
 {% endblock %}

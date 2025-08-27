@@ -11,11 +11,11 @@
 		<!-- Profile Header -->
 		<div class="bg-[var(--color-card-bg)] p-6 rounded-xl shadow border border-[var(--color-border)] mb-6 flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-6">
 
-			<img src="https://i.pravatar.cc/150?img=11" alt="User Avatar" class="w-32 h-32 rounded-full">
+			<img src="{{ storage(app.user.avatar) }}" alt="User Avatar" class="w-15 h-15 rounded-full">
 
 			<div class="flex-1">
-				<h1 class="text-3xl font-bold text-[var(--color-primary)] mb-1">{{username}}</h1>
-				<p class="text-sm text-gray-400 mb-3">Member since Jan 2022</p>
+				<h1 class="text-3xl font-bold text-[var(--color-primary)] mb-1">{{ app.user.full_name }}</h1>
+				<p class="text-sm text-gray-400 mb-3">Joined at {{ app.user.created_at }}</p>
 
 				<!-- Stats -->
 				<div class="flex gap-6 text-[var(--color-text)]">

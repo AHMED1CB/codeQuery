@@ -1,47 +1,84 @@
 <?php
 
 namespace App\Controllers;
-use App\Core\Request;
-
-
+use App\Core\Session;
+use App\Data\Tag;
+use App\Data\User;
+use App\Data\Question;
 
 class RoutesController extends Controller {
+    protected $user;
+    protected $app;
 
+    public function __construct(){
+
+        if (Session::has("CQ_APP_AUTH")) {
+            $id = Session::get("CQ_APP_AUTH");
+            $user = User::find( $id );
+            
+            if ($user) {
+                $this->user = $user;
+            }else{
+                Session::remove("CQ_APP_AUTH");
+            }
+            
+            $this->app['user'] = $user;
+
+
+        }
+
+
+        // Top Questions
+
+        $topQuestions = Question::get_popular(3);
+        $popularTags = Tag::get_popular(6);
+        $popularUsers = User::get_popular(12);
+       
+        $this->app['contents']['topQuestions'] = $topQuestions;
+        $this->app['contents']['popularTags'] = $popularTags;
+        $this->app['contents']['popularUsers'] = $popularUsers;
+
+
+
+    }
 
     public function mainPage() {         
 
-        return $this->display("main");
+        return $this->display("main" , ['app' => $this->app]);
 
     }
 
     public function questionsPage(){
-        return $this->display('question.display');
+        return $this->display('question.display' , ['app' => $this->app]);
     }
 
     public function tagsPage(){
-        return $this->display('tags.display');
+        return $this->display('tags.display' , ['app' => $this->app]);
     }
 
     public function usersPage(){
-        return $this->display('users.display');
+        return $this->display('users.display' , ['app' => $this->app]);
     }
 
      public function userProfile($username){
-        return $this->display('users.profile' , ['username'=> $username]);
+        return $this->display('users.profile' , ['app' => $this->app]);
     }
 
     public function askPage(){
-        return $this->display('question.ask');
+        return $this->display('question.ask' , ['app' => $this->app]);
     }
 
     public function registerPage(){
-        $error = Request::input('err');
+        $error = Session::has('error') ?   Session::get('error') : "";
+        Session::remove('error');
 
-        return $this->display('auth.register' , ['error' => $error ?? null]);
+        return $this->display('auth.register' , ['error' => $error]);
     }
 
     public function loginPage(){
-        return $this->display('auth.login');
+           $error = Session::has('error') ?   Session::get('error') : "";
+            Session::remove('error');
+        return $this->display('auth.login' , ['error' => $error]);
     }
 
 }

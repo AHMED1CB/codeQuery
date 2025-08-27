@@ -9,4 +9,11 @@ class DB{
         return new QueryBuilder($table);
     }
 
+
+    public static function query( $query , $params = []){
+        return new QueryBuilder('')->runQuery($query, $params);
+    } 
+
+    
+
 }

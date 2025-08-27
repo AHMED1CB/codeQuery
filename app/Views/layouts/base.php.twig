@@ -40,17 +40,17 @@
 		</div>
 
 		<nav class="px-4 flex">
-			{% if user %}
+			{% if app.user %}
 
 			<a class="mx-2 p-2 cursor-pointer  flex items-center justify-center">
-				<i class="ph ph-user border w-10 h-10 flec items-center justify-center mr-5 rounded-full block"></i>
-				<span class="userrname">Ahmed Hassan</span>
+				<img class="w-8 h-8  mr-3" src="{{storage('images/' ~ app.user.avatar)}}" alt="">
+				<span class="userrname">{{app.user.full_name}}</span>
 			</a>
 
 			{% else %}
-			<a href="/auth/login" class="mx-2 p-2 cursor-pointer flex items-center justify-center">Login</a>
-			<a href="/auth/register" class="mx-2 rounded py-1 px-3  duration border-[var(--color-primary)] hover:bg-[var(--color-primary)] transition text-white
-																						cursor-pointer flex items-center justify-center border">Register</a>
+				<a href="/auth/login" class="mx-2 p-2 cursor-pointer flex items-center justify-center">Login</a>
+				<a href="/auth/register" class="mx-2 rounded py-1 px-3  duration border-[var(--color-primary)] hover:bg-[var(--color-primary)] transition text-white
+																							cursor-pointer flex items-center justify-center border">Register</a>
 
 			{% endif %}
 
@@ -60,7 +60,7 @@
 
 
 	<div class="page-container h-[var(--content-height)] mx-autoflex  flex ">
-		{% if user %}
+		{% if app.user %}
 
 		<aside class="sidebar h-full  bg-[var(--color-card-bg)] p-4 m-0 shadow w-50">
 
@@ -90,7 +90,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="/users/ahmedhassan"
+					<a href="/users/{{app.user.username}}"
 						class="flex items-center gap-3 px-2 py-1 rounded hover:bg-[var(--color-bg)]">
 						<i class="ph ph-user"></i>
 						<span>Profile</span>

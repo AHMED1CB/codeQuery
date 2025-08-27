@@ -11,7 +11,7 @@ class QueryBuilder
     protected $bindings = [];
 
     protected $set = [];
-    protected $limt = null;
+    protected $limit = null;
 
     protected $conditions = [];
     protected $connection;
@@ -104,7 +104,7 @@ class QueryBuilder
             $this->select('*');
         }
 
-        $this->limt = 1;
+        $this->limit = 1;
 
         return $this->runQuery($this->completeduery(), $this->bindings)->fetchObject();
 
@@ -158,9 +158,9 @@ class QueryBuilder
 
 
 
-        if (is_numeric($this->limt)) {
+        if (is_numeric($this->limit)) {
 
-            $query .= " LIMIT {$this->limt}";
+            $query .= " LIMIT {$this->limit}";
 
         }
 
@@ -183,12 +183,19 @@ class QueryBuilder
 
 
 
+
     public function sql(): string
     {
         return $this->completeduery();
     }
 
 
+
+    public function limit($n){
+
+        $this->limit = $n;
+        return $this;
+    }
 
 
 
