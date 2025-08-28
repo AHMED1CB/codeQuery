@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+use App\Core\Request;
 use App\Core\Session;
 use App\Data\Tag;
 use App\Data\User;
@@ -30,25 +31,37 @@ class RoutesController extends Controller {
 
         // Top Questions
 
-        $topQuestions = Question::get_popular(3);
+        
         $popularTags = Tag::get_popular(6);
-        $popularUsers = User::get_popular(12);
-       
-        $this->app['contents']['topQuestions'] = $topQuestions;
+ 
         $this->app['contents']['popularTags'] = $popularTags;
-        $this->app['contents']['popularUsers'] = $popularUsers;
-
 
 
     }
 
     public function mainPage() {         
 
+        $topQuestions = Question::get_popular(3);
+        $popularUsers = User::get_popular(12);
+
+        $this->app['contents']['topQuestions'] = $topQuestions;
+        $this->app['contents']['popularUsers'] = $popularUsers;
+
+
         return $this->display("main" , ['app' => $this->app]);
 
     }
 
     public function questionsPage(){
+        
+        $tag_filter = Request::input('t');
+        $questions = Question::paginate(5 , (Request::input('p') ?? 1) , ['tag' => $tag_filter]);
+       
+        
+        $this->app['contents']['questions'] = $questions['data'];
+        
+        $this->app['contents']['pages'] = $questions['pagination']['pages_count'];
+       
         return $this->display('question.display' , ['app' => $this->app]);
     }
 

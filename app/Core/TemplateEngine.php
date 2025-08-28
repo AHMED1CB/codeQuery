@@ -33,6 +33,13 @@ class TemplateEngine
                 return  count($data);
             }));
 
+             $this->twig->addFunction(new TwigFunction('urlParam', function ($name , $value){
+
+                $params = $_GET;
+                $params[$name] = $value;
+                return http_build_query( $params);
+            }));
+
         }
     }
 

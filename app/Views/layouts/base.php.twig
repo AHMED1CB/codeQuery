@@ -36,7 +36,6 @@
 			<input type="text" placeholder="Search in Site" name="search" id="searchInput"
 				class="w-[95%] h-full outline-none p-2 ">
 
-
 		</div>
 
 		<nav class="px-4 flex">
@@ -101,23 +100,20 @@
 
 			<h2 class="text-[var(--color-primary)] font-bold text-lg mt-6 mb-4">Tags</h2>
 			<div class="flex flex-wrap gap-2">
-				<a href="/tags/1"
-					class="px-2 py-1 bg-[var(--color-bg)] text-[var(--color-secondary)] rounded hover:bg-[var(--color-primary)] hover:text-white text-sm">
-					PHP
-				</a>
-				<a href="/tags/1"
-					class="px-2 py-1 bg-[var(--color-bg)] text-[var(--color-secondary)] rounded hover:bg-[var(--color-primary)] hover:text-white text-sm">
-					JAVASCRIPT
-				</a>
+				{% if app.contents.popularTags %}
+				
+					{% for tag in app.contents.popularTags %}
+						
+						
+						<a href="/tags/{{tag.id}}"
+							class="px-2 py-1 bg-[var(--color-bg)] text-[var(--color-secondary)] rounded hover:bg-[var(--color-primary)] hover:text-white text-sm">
+							{{tag.name}}
+						</a>
 
-				<a href="/tags/1"
-					class="px-2 py-1 bg-[var(--color-bg)] text-[var(--color-secondary)] rounded hover:bg-[var(--color-primary)] hover:text-white text-sm">
-					JAVA
-				</a>
-				<a href="/tags/1"
-					class="px-2 py-1 bg-[var(--color-bg)] text-[var(--color-secondary)] rounded hover:bg-[var(--color-primary)] hover:text-white text-sm">
-					PYTHON
-				</a>
+					{% endfor %}
+					
+				{% endif %}
+				
 			</div>
 		</aside>
 

@@ -14,9 +14,6 @@ CREATE TABLE `users`(
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
-
-
-
 -- Questions
 CREATE TABLE `questions`(
     id BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -54,24 +51,18 @@ CREATE TABLE `tags`(
     id BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     name VARCHAR(255) UNIQUE NOT NULL,
     image VARCHAR(255) NOT NULL,
-    
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 -- question Tags
 CREATE TABLE `question_tags`(
-    id BIGINT PRIMARY KEY NOT NULL,
-
-    question_id BIGINT NOT NULL ,
-    
-    tag_id BIGINT NOT NULL ,
-    
+    id BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    question_id BIGINT NOT NULL,
+    tag_id BIGINT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (`question_id`) REFERENCES `questions`(`id`) ON DELETE CASCADE,
-    FOREIGN KEY (`tag_id`) REFERENCES `tags`(`id`) ON DELETE CASCADE ,
-    UNIQUE (question_id, tag_id)
-
+    FOREIGN KEY (`tag_id`) REFERENCES `tags`(`id`) ON DELETE CASCADE
 );
 -- Votes
 CREATE TABLE `votes`(
@@ -84,4 +75,3 @@ CREATE TABLE `votes`(
     FOREIGN KEY (`user_id`) REFERENCES `users`(`id`),
     FOREIGN KEY (`question_id`) REFERENCES `questions`(`id`)
 );
-

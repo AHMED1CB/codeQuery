@@ -5,8 +5,9 @@ namespace App\Core;
 class Request{
     static public function input(string $name = ''){
 
+        $_rqst = $_REQUEST;
 
-        return htmlspecialchars($_REQUEST[$name] ?? '');    
+        return htmlspecialchars($_rqst[$name] ?? '');    
 
     }
 
