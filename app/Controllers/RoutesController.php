@@ -66,6 +66,18 @@ class RoutesController extends Controller {
     }
 
     public function tagsPage(){
+
+        $search = Request::input('q');
+        $tagsPage = Tag::paginate(20 , (Request::input('p') ?? 1) , [
+            'search' => $search
+        ]);
+
+        $tags = $tagsPage['data'];
+        $pages = $tagsPage['pagination']['pages_count'];
+
+        $this->app['contents']['pages'] = $pages;
+        $this->app['contents']['tags'] = $tags;
+
         return $this->display('tags.display' , ['app' => $this->app]);
     }
 

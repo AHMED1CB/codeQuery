@@ -11,80 +11,58 @@
 		<!-- Page Title -->
 		<h1 class="text-3xl font-bold mb-6 text-[var(--color-primary)]">All Tags</h1>
 
-		<!-- Filters Section -->
-		<section class="bg-[var(--color-card-bg)] p-5 rounded-xl shadow border border-[var(--color-border)] mb-6 flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
+		<section class="bg-[var(--color-card-bg)] p-6 rounded-xl shadow border border-[var(--color-border)] mb-6">
+			<div class="flex flex-col gap-6">
 
-			<div class="flex flex-wrap gap-2 items-center">
-				<span class="text-[var(--color-primary)] font-semibold">Sort by:</span>
-				<button class="px-3 py-1 rounded-full border border-[var(--color-border)] bg-[var(--color-bg)] text-[var(--color-text)] hover:bg-[var(--color-primary)] hover:text-white transition">Popularity</button>
-				<button class="px-3 py-1 rounded-full border border-[var(--color-border)] bg-[var(--color-bg)] text-[var(--color-text)] hover:bg-[var(--color-primary)] hover:text-white transition">Questions Count</button>
-				<button class="px-3 py-1 rounded-full border border-[var(--color-border)] bg-[var(--color-bg)] text-[var(--color-text)] hover:bg-[var(--color-primary)] hover:text-white transition">Newest</button>
+				<div class="w-full relative flex  items-center ">
+					<input type="text" id="tagsSearch" placeholder="Search By Tag Name" class="w-full px-4  py-3 rounded-lg border-l border-[var(--color-border)] bg-[var(--color-bg)] text-[var(--color-text)] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] transition">
+					<i class="left-4 top-1/2-translate-y-1/2 text-[var(--color-primary)] px-3 py-2 rounded-lg text-lg cursor-pointer    ph ph-magnifying-glass"></i>
+				</div>
+
+
 			</div>
-
-			<button class="px-5 py-2 rounded bg-[var(--color-primary)] text-white hover:bg-[var(--color-accent)] transition">Apply Filters</button>
 		</section>
 
 		<!-- Tags Grid -->
-		<div
-			class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+		<div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
 
+			{# {% if app.contents. %}{% endif %} #}
 			<!-- Tag 1 -->
-			<div class="bg-[var(--color-card-bg)] p-5 rounded-xl shadow border border-[var(--color-border)] hover:shadow-lg transition">
-				<div class="flex justify-between items-center mb-2">
-					<span class="text-lg font-semibold hover:text-[var(--color-accent)] cursor-pointer">PHP</span>
-					<span class="text-sm text-gray-400">120 questions</span>
-				</div>
-				<div class="text-xs text-gray-500 flex flex-wrap gap-1">
-					<span class="bg-[var(--color-bg)] px-2 py-0.5 rounded hover:bg-[var(--color-primary)] hover:text-white cursor-pointer">Laravel</span>
-					<span class="bg-[var(--color-bg)] px-2 py-0.5 rounded hover:bg-[var(--color-primary)] hover:text-white cursor-pointer">Symfony</span>
-				</div>
-			</div>
+				{% if app.contents.tags %}
+					{% for tag in app.contents.tags %}
 
-			<!-- Tag 2 -->
-			<div class="bg-[var(--color-card-bg)] p-5 rounded-xl shadow border border-[var(--color-border)] hover:shadow-lg transition">
-				<div class="flex justify-between items-center mb-2">
-					<span class="text-lg font-semibold hover:text-[var(--color-accent)] cursor-pointer">JavaScript</span>
-					<span class="text-sm text-gray-400">200 questions</span>
-				</div>
-				<div class="text-xs text-gray-500 flex flex-wrap gap-1">
-					<span class="bg-[var(--color-bg)] px-2 py-0.5 rounded hover:bg-[var(--color-primary)] hover:text-white cursor-pointer">React</span>
-					<span class="bg-[var(--color-bg)] px-2 py-0.5 rounded hover:bg-[var(--color-primary)] hover:text-white cursor-pointer">Vue</span>
-				</div>
-			</div>
+						<div class="bg-[var(--color-card-bg)] p-5 rounded-xl shadow border border-[var(--color-border)] hover:shadow-lg transition"> <div class="flex justify-between items-center mb-2">
+							<a href="/questions/?t={{tag.name}}" class="text-lg font-semibold hover:text-[var(--color-accent)] cursor-pointer">
+								{{tag.name}}
+							</a>
+							<span class="text-sm text-gray-400">{{tag.questions_count}}
+								questions</span>
+						</div>
+					</div>
+				{% endfor %}
 
-			<!-- Tag 3 -->
-			<div class="bg-[var(--color-card-bg)] p-5 rounded-xl shadow border border-[var(--color-border)] hover:shadow-lg transition">
-				<div class="flex justify-between items-center mb-2">
-					<span class="text-lg font-semibold hover:text-[var(--color-accent)] cursor-pointer">Python</span>
-					<span class="text-sm text-gray-400">180 questions</span>
-				</div>
-				<div class="text-xs text-gray-500 flex flex-wrap gap-1">
-					<span class="bg-[var(--color-bg)] px-2 py-0.5 rounded hover:bg-[var(--color-primary)] hover:text-white cursor-pointer">Django</span>
-					<span class="bg-[var(--color-bg)] px-2 py-0.5 rounded hover:bg-[var(--color-primary)] hover:text-white cursor-pointer">Flask</span>
-				</div>
-			</div>
+			{% else %}
+				<h2 class="text-center text-lg w-full font-bold">No Tags On App Right now</h2>
 
-			<!-- Tag 4 -->
-			<div class="bg-[var(--color-card-bg)] p-5 rounded-xl shadow border border-[var(--color-border)] hover:shadow-lg transition">
-				<div class="flex justify-between items-center mb-2">
-					<span class="text-lg font-semibold hover:text-[var(--color-accent)] cursor-pointer">Node.js</span>
-					<span class="text-sm text-gray-400">90 questions</span>
-				</div>
-				<div class="text-xs text-gray-500 flex flex-wrap gap-1">
-					<span class="bg-[var(--color-bg)] px-2 py-0.5 rounded hover:bg-[var(--color-primary)] hover:text-white cursor-pointer">Express</span>
-					<span class="bg-[var(--color-bg)] px-2 py-0.5 rounded hover:bg-[var(--color-primary)] hover:text-white cursor-pointer">NestJS</span>
-				</div>
-			</div>
+
+			{% endif %}
+
 
 		</div>
 
 		<!-- Pagination -->
 		<div class="mt-8 flex justify-center space-x-2">
-			<a href="#" class="px-4 py-2 bg-[var(--color-secondary)] rounded hover:bg-[var(--color-border)] transition text-[var(--color-text)]">1</a>
-			<a href="#" class="px-4 py-2 bg-[var(--color-secondary)] rounded hover:bg-[var(--color-border)] transition text-[var(--color-text)]">2</a>
-			<a href="#" class="px-4 py-2 bg-[var(--color-secondary)] rounded hover:bg-[var(--color-border)] transition text-[var(--color-text)]">3</a>
+			{% for i in 1..app.contents.pages %}
+				<a href="?{{urlParam('p' , i)}}" class="px-4 py-2 bg-[var(--color-secondary)] rounded hover:bg-[var(--color-border)] transition text-[var(--color-text)]">{{i}}</a>
+
+			{% endfor %}
 		</div>
 
 	</div>
 
+{% endblock %}
+
+{% block scripts %}
+
+	<script src="{{asset('js/search.js')}}"></script>
 {% endblock %}
