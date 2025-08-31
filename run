@@ -3,7 +3,7 @@
 
 
 if (in_array('--toip' , array_values($argv))){
-    exec('php -S 10.140.239.100:8000 -t public');
+    exec('php -S 10.140.239.100:8000 -t public'); // Replace With Your Ip
 }else{
     exec('php -S localhost:8000 -t public');
 };
