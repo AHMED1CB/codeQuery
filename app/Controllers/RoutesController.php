@@ -110,7 +110,11 @@ class RoutesController extends Controller {
     }
 
     public function settingsPage(){
-        return $this->display('settings.display' , ['app'=> $this->app]);
+        if (!empty($this->app['user'])){
+            return $this->display('settings.display' , ['app'=> $this->app]);
+        }else{
+            $this->display('404');
+        }
     }
 
 }

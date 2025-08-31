@@ -107,4 +107,9 @@ class AuthController extends Controller
     }
 
 
+    public function logout(){
+        Session::remove("CQ_APP_AUTH");
+        return Response::redirect("/");
+    }
+
 }

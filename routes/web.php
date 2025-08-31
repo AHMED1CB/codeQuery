@@ -1,4 +1,5 @@
 <?php
+use App\Controllers\UserController;
 use App\Core\Router;
 use App\Controllers\RoutesController;
 use App\Controllers\QuestionsController;
@@ -26,6 +27,7 @@ Router::new('/tags' , "GET" , [RoutesController::class , 'tagsPage']);
 
 // Users
 Router::new('/users/:user' , "GET" , [RoutesController::class , 'userProfile']);
+Router::new('/users/profile/update' , "POST" , [UserController::class , 'update']);
 
 
 // Auth
@@ -35,6 +37,9 @@ Router::new('/auth/login' , "GET" , [RoutesController::class , 'loginPage']);
 
 Router::new('/auth/register' , "POST" , [AuthController::class , 'RegisterUser']);
 Router::new('/auth/login' , "POST" , [AuthController::class , 'LoginUser']);
+
+
+Router::new('/auth/logout' , "GET" , [AuthController::class , 'logout']);
 
 
 

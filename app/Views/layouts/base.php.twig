@@ -18,6 +18,8 @@
 		<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 		<script src="https://cdn.jsdelivr.net/npm/phosphor-icons@1.4.2/src/index.min.js"></script>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/phosphor-icons@1.4.2/src/css/icons.min.css">
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 		<link rel="stylesheet" href="{{asset('css/main.css')}}"> {% block pageHead %}{% endblock %}
 
@@ -121,14 +123,12 @@
 
 			<main class="main-content"> {% block content %}{% endblock %}
 
-				</main>
-			</body>
-		</html>
+			</main>
+	
 	</div>
 
 
-	{# JS Libraries #}
-	<script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
-
 	{% block scripts %}{% endblock %}
-</body></html>
+
+</body>
+</html>

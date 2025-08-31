@@ -91,3 +91,7 @@ aside.sidebar{
     border-color: var(--color-primary);
 }
 
+.modal{
+    background-color: var(--color-card-bg);
+    color: var(--color-text);
+}

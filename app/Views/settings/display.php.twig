@@ -6,7 +6,7 @@
 
 		<!-- Profile Picture -->
 		<div class="flex flex-col items-center ">
-			<img src="{{storage('images/' ~ app.user.avatar)}}" alt="Profile Picture" class="w-16 h-16 rounded-full border border-[var(--color-border)]">
+			<img id="profile_avatar" src="{{storage('images/' ~ app.user.avatar)}}" alt="Profile Picture" class="w-16 h-16 rounded-full border border-[var(--color-border)]">
 			<div>
 				<label class="block mt-3 border border-dashed px-2 py-1 text-gray-400 rounded cursor-pointer font-medium text" for="imgInput">select file</label>
 
@@ -17,15 +17,19 @@
 		<!-- Full Name -->
 		<div>
 			<label class="block text-sm font-medium text-[var(--color-secondary)]">Full Name</label>
-			<input type="text" class="mt-1 w-full rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] p-3 focus:ring-2 focus:ring-[var(--color-primary)] outline-none" placeholder="Enter your full name">
+			<input id="fullname" type="text" class="mt-1 w-full rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] p-3 focus:ring-2 focus:ring-[var(--color-primary)] outline-none" placeholder="Enter your full name">
 		</div>
 
 		<!-- Username -->
 		<div>
 			<label class="block text-sm font-medium text-[var(--color-secondary)]">Username</label>
-			<input type="text" class="mt-1 w-full rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] p-3 focus:ring-2 focus:ring-[var(--color-primary)] outline-none" placeholder="Enter your username">
+			<input id="username" type="text" class="mt-1 w-full rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] p-3 focus:ring-2 focus:ring-[var(--color-primary)] outline-none" placeholder="Enter your username">
 		</div>
 
+		<div>
+			<label class="block text-sm font-medium text-[var(--color-secondary)]">Bio</label>
+			<input id="bio" type="text" class="mt-1 w-full rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] p-3 focus:ring-2 focus:ring-[var(--color-primary)] outline-none" placeholder="Enter your Bio">
+		</div>
 		<!-- Dark Mode Toggle -->
 		<div class="flex items-center justify-between border-t border-[var(--color-border)] pt-4">
 			<span class="text-[var(--color-text)] font-medium">Dark Mode</span>
@@ -38,12 +42,12 @@
 
 		<!-- Save & Logout -->
 		<div class="flex justify-between pt-4 border-t border-[var(--color-border)]">
-			<button class="px-4 py-2 bg-[var(--color-primary)] text-white font-medium rounded-lg hover:bg-[var(--color-primary-hover)] transition">
+			<button id="saveChanges" class="px-4 py-2 bg-[var(--color-primary)] text-white font-medium rounded-lg hover:bg-[var(--color-primary-hover)] transition">
 				Save Changes
 			</button>
-			<button class="px-4 py-2 bg-red-500 text-white font-medium rounded-lg hover:bg-red-600 transition">
+			<a href="/auth/logout" class="px-4 py-2 bg-red-500 text-white font-medium rounded-lg hover:bg-red-600 transition">
 				Logout
-			</button>
+			</a>
 		</div>
 	</section>
 

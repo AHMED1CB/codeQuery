@@ -11,6 +11,8 @@ class QueryBuilder
     protected $bindings = [];
 
     protected $set = [];
+    protected $setBindings = [];
+
     protected $limit = null;
 
     protected $conditions = [];
@@ -49,37 +51,36 @@ class QueryBuilder
         $this->query = "DELETE";
 
 
-        return $this->runQuery($this->completeduery(), $this->bindings);
+        return $this->runQuery($this->completedQuery(), $this->bindings);
     }
 
 
     public function update($data)
     {
-        $this->query = "UPDATE ";
-
+        $this->query = "UPDATE";
 
         foreach ($data as $key => $value) {
-
-            $this->set[] = " `{$key}` = ? ";
-            $this->bindings[] = $value;
+            $this->set[] = "`{$key}` = ?";
+            $this->setBindings[] = $value;
 
         }
 
-
-        return $this->runQuery($this->completeduery(), $this->bindings);
+        return $this->runQuery($this->completedQuery(), array_merge($this->setBindings, $this->bindings));
     }
 
     public function where($column, $value, $operator = "=")
     {
-        $this->conditions[] = [" `{$column}` {$operator} ?" , 'AND'];
+        $this->conditions[] = [" `{$column}` {$operator} ?", 'AND'];
 
+        // $this->bindings
         $this->bindings[] = $value;
+
         return $this;
     }
 
     public function orWhere($column, $value, $operator = "=")
     {
-        $this->conditions[] = [" `{$column}` {$operator} ?" , 'OR'];
+        $this->conditions[] = [" `{$column}` {$operator} ?", 'OR'];
 
         $this->bindings[] = $value;
         return $this;
@@ -92,7 +93,7 @@ class QueryBuilder
         if (!str_starts_with($this->query, 'select')) {
             $this->select('*');
         }
-        return $this->runQuery($this->completeduery(), $this->bindings)->fetchObject();
+        return $this->runQuery($this->completedQuery(), $this->bindings)->fetchObject();
     }
 
 
@@ -106,13 +107,13 @@ class QueryBuilder
 
         $this->limit = 1;
 
-        return $this->runQuery($this->completeduery(), $this->bindings)->fetchObject();
+        return $this->runQuery($this->completedQuery(), $this->bindings)->fetchObject();
 
     }
 
 
 
-    public function insert($data)   
+    public function insert($data)
     {
 
         $this->query = " INSERT INTO ";
@@ -126,12 +127,12 @@ class QueryBuilder
         $this->query = "INSERT INTO `{$this->table}` (`{$columnsList}`) VALUES ({$placeholders})";
 
         $this->bindings = array_values($data);
-        return $this->runQuery($this->completeduery(), $this->bindings);
+        return $this->runQuery($this->completedQuery(), $this->bindings);
 
     }
 
 
-    protected function completeduery(): string
+    protected function completedQuery(): string
     {
 
         $query = $this->query;
@@ -143,11 +144,11 @@ class QueryBuilder
             $query .= " `{$this->table}` SET " . implode(', ', $this->set);
         }
 
-        if ($this->conditions){
+        if ($this->conditions) {
             $query .= " WHERE ";
         }
         for ($i = 0; $i < count($this->conditions); $i++) {
-            if ($i == 0){
+            if ($i == 0) {
                 $query .= $this->conditions[$i][0];
                 continue;
             }
@@ -186,12 +187,13 @@ class QueryBuilder
 
     public function sql(): string
     {
-        return $this->completeduery();
+        return $this->completedQuery();
     }
 
 
 
-    public function limit($n){
+    public function limit($n)
+    {
 
         $this->limit = $n;
         return $this;
