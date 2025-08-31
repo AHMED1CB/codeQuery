@@ -81,11 +81,14 @@ class RoutesController extends Controller {
         return $this->display('tags.display' , ['app' => $this->app]);
     }
 
-    public function usersPage(){
-        return $this->display('users.display' , ['app' => $this->app]);
-    }
+  
 
      public function userProfile($username){
+        $user = User::getDetails($username);
+        if (empty($user)) {
+            return $this->display('404');
+        }
+        $this->app['contents']['profile'] = $user;
         return $this->display('users.profile' , ['app' => $this->app]);
     }
 
@@ -104,6 +107,10 @@ class RoutesController extends Controller {
            $error = Session::has('error') ?   Session::get('error') : "";
             Session::remove('error');
         return $this->display('auth.login' , ['error' => $error]);
+    }
+
+    public function settingsPage(){
+        return $this->display('settings.display' , ['app'=> $this->app]);
     }
 
 }

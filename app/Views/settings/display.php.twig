@@ -1,0 +1,56 @@
+{% extends "layouts/base.php.twig" %}
+
+{% block content %}
+	<section class=" mx-auto bg-[var(--color-card-bg)] shadow  h-full p-6 space-y-3 border border-[var(--color-border)]">
+		<h2 class="text-xl font-semibold text-[var(--color-primary)]">Account Settings</h2>
+
+		<!-- Profile Picture -->
+		<div class="flex flex-col items-center ">
+			<img src="{{storage('images/' ~ app.user.avatar)}}" alt="Profile Picture" class="w-16 h-16 rounded-full border border-[var(--color-border)]">
+			<div>
+				<label class="block mt-3 border border-dashed px-2 py-1 text-gray-400 rounded cursor-pointer font-medium text" for="imgInput">select file</label>
+
+				<input id="imgInput" type="file" class="hidden block w-full text-sm text-[var(--color-secondary)] file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border file:border-[var(--color-border)] file:bg-[var(--color-bg)] file:text-[var(--color-primary)] hover:file:bg-[var(--color-primary)] hover:file:text-white">
+			</div>
+		</div>
+
+		<!-- Full Name -->
+		<div>
+			<label class="block text-sm font-medium text-[var(--color-secondary)]">Full Name</label>
+			<input type="text" class="mt-1 w-full rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] p-3 focus:ring-2 focus:ring-[var(--color-primary)] outline-none" placeholder="Enter your full name">
+		</div>
+
+		<!-- Username -->
+		<div>
+			<label class="block text-sm font-medium text-[var(--color-secondary)]">Username</label>
+			<input type="text" class="mt-1 w-full rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] p-3 focus:ring-2 focus:ring-[var(--color-primary)] outline-none" placeholder="Enter your username">
+		</div>
+
+		<!-- Dark Mode Toggle -->
+		<div class="flex items-center justify-between border-t border-[var(--color-border)] pt-4">
+			<span class="text-[var(--color-text)] font-medium">Dark Mode</span>
+			<label class="relative inline-flex items-center cursor-pointer">
+				<input id="toggleModeCheckBox" type="checkbox" class="sr-only peer">
+				<div class="w-11 h-6 bg-gray-300 rounded-full peer peer-checked:bg-[var(--color-primary)] transition"></div>
+				<div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition peer-checked:translate-x-5"></div>
+			</label>
+		</div>
+
+		<!-- Save & Logout -->
+		<div class="flex justify-between pt-4 border-t border-[var(--color-border)]">
+			<button class="px-4 py-2 bg-[var(--color-primary)] text-white font-medium rounded-lg hover:bg-[var(--color-primary-hover)] transition">
+				Save Changes
+			</button>
+			<button class="px-4 py-2 bg-red-500 text-white font-medium rounded-lg hover:bg-red-600 transition">
+				Logout
+			</button>
+		</div>
+	</section>
+
+
+{% endblock %}
+
+{% block scripts %}
+	<script src="{{asset('js/settings.js')}}"></script>
+
+{% endblock %}

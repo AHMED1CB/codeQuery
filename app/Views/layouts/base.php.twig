@@ -1,138 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-	<meta charset="UTF-8">
-	<title>
-		{% block title %}
-		CodeQuery Q&A Platform
-		{% endblock %}
-	</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}
+				CodeQuery Q&A Platform
+			{% endblock %}
+		</title>
+		<meta
+		name="viewport" content="width=device-width, initial-scale=1.0">
 
-	{# Using CDN on Development Only #}
-	<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link
-		href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-		rel="stylesheet">
-	<script src="https://cdn.jsdelivr.net/npm/phosphor-icons@1.4.2/src/index.min.js"></script>
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/phosphor-icons@1.4.2/src/css/icons.min.css">
+		{# Using CDN on Development Only #}
+		<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+		<script src="https://cdn.jsdelivr.net/npm/phosphor-icons@1.4.2/src/index.min.js"></script>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/phosphor-icons@1.4.2/src/css/icons.min.css">
 
-	<link rel="stylesheet" href="{{asset('css/main.css')}}"> {% block pageHead %}{% endblock %}
+		<link rel="stylesheet" href="{{asset('css/main.css')}}"> {% block pageHead %}{% endblock %}
 
-</head>
+		</head>
 
-<body class="dark">
+		<body>
+			<script src="{{asset('js/base.js')}}"></script>
 
-	<header class="bg-[var(--color-card-bg)]  shadow p-4 m-0  flex justify-between items-center">
-		<a href="/" class="text-[var(--color-secondary)] font-bold text-2xl w-[20%]">CodeQuery</a>
+			<header class="bg-[var(--color-card-bg)]  shadow p-4 m-0  flex justify-between items-center">
+				<a href="/" class="text-[var(--color-secondary)] font-bold text-2xl w-[20%]">CodeQuery</a>
 
 
-		<div class="search-bar hidden md:flex  w-[55%] border rounded-full items-center">
-			<i class="ph ph-magnifying-glass  text-xl flex items-center justify-center h-full p-2 text-center"></i>
+				<div class="search-bar hidden md:flex  w-[55%] border rounded-full items-center">
+					<i class="ph ph-magnifying-glass  text-xl flex items-center justify-center h-full p-2 text-center"></i>
 
-			<input type="text" placeholder="Search in Site" name="search" id="searchInput"
-				class="w-[95%] h-full outline-none p-2 ">
+					<input type="text" placeholder="Search in Site" name="search" id="searchInput" class="w-[95%] h-full outline-none p-2 ">
 
-		</div>
+				</div>
 
-		<nav class="px-4 flex">
-			{% if app.user %}
+				<nav class="px-4 flex">
+					{% if app.user %}
 
-			<a class="mx-2 p-2 cursor-pointer  flex items-center justify-center">
-				<img class="w-8 h-8  mr-3" src="{{storage('images/' ~ app.user.avatar)}}" alt="">
-				<span class="userrname">{{app.user.full_name}}</span>
-			</a>
+						<a class="mx-2 p-2 cursor-pointer  flex items-center justify-center">
+							<img class="w-8 h-8  mr-3" src="{{storage('images/' ~ app.user.avatar)}}" alt="">
+							<span class="userrname">{{app.user.full_name}}</span>
+						</a>
 
-			{% else %}
-				<a href="/auth/login" class="mx-2 p-2 cursor-pointer flex items-center justify-center">Login</a>
-				<a href="/auth/register" class="mx-2 rounded py-1 px-3  duration border-[var(--color-primary)] hover:bg-[var(--color-primary)] transition text-white
-																							cursor-pointer flex items-center justify-center border">Register</a>
+					{% else %}
+						<a href="/auth/login" class="mx-2 p-2 cursor-pointer flex items-center justify-center">Login</a>
+						<a href="/auth/register" class="mx-2 rounded py-1 px-3  duration border-[var(--color-primary)] hover:bg-[var(--color-primary)] transition text-white
+																														cursor-pointer flex items-center justify-center border">Register</a>
+
+					{% endif %}
+
+				</nav>
+
+			</header>
+
+
+			<div class="page-container h-[var(--content-height)] mx-autoflex  flex ">
+				{% if app.user %}
+
+					<aside class="sidebar h-full  bg-[var(--color-card-bg)] p-4 m-0 shadow w-50">
+
+						<ul class="space-y-2">
+							<li>
+								<a href="/" class="flex gap-3 items-center  px-2 py-1 rounded hover:bg-[var(--color-bg)]">
+									<i class="ph ph-house-fill"></i>
+									<span>Home</span>
+								</a>
+							</li>
+
+							<a href="/questions" class="flex gap-3 items-center px-2 py-1 rounded hover:bg-[var(--color-bg)]">
+								<i class="ph ph-question"></i>
+								<span>Questions</span>
+							</a>
+						</li>
+						<li>
+							<a href="/tags" class="flex items-center gap-3 px-2 py-1 rounded hover:bg-[var(--color-bg)]">
+								<i class="ph ph-tag"></i>
+								<span>Tags</span>
+							</a>
+						</li>
+
+						<li>
+							<a href="/users/{{app.user.username}}" class="flex items-center gap-3 px-2 py-1 rounded hover:bg-[var(--color-bg)]">
+								<i class="ph ph-user"></i>
+								<span>Profile</span>
+							</a>
+						</li>
+
+						<li>
+							<a href="/settings" class="flex items-center gap-3 px-2 py-1 rounded hover:bg-[var(--color-bg)]">
+								<i class="ph ph-gear"></i>
+								<span>Settings</span>
+							</a>
+						</li>
+					</ul>
+
+
+					<h2 class="text-[var(--color-primary)] font-bold text-lg mt-6 mb-4">Tags</h2>
+					<div class="flex flex-wrap gap-2">
+						{% if app.contents.popularTags %}
+
+							{% for tag in app.contents.popularTags %}
+
+
+								<a href="/questions?t={{tag.name}}" class="px-2 py-1 bg-[var(--color-bg)] text-[var(--color-secondary)] rounded hover:bg-[var(--color-primary)] hover:text-white text-sm">
+									{{tag.name}}
+								</a>
+
+							{% endfor %}
+
+						{% endif %}
+
+					</div>
+				</aside>
 
 			{% endif %}
 
-		</nav>
 
-	</header>
+			<main class="main-content"> {% block content %}{% endblock %}
 
-
-	<div class="page-container h-[var(--content-height)] mx-autoflex  flex ">
-		{% if app.user %}
-
-		<aside class="sidebar h-full  bg-[var(--color-card-bg)] p-4 m-0 shadow w-50">
-
-			<ul class="space-y-2">
-				<li>
-					<a href="/" class="flex gap-3 items-center  px-2 py-1 rounded hover:bg-[var(--color-bg)]">
-						<i class="ph ph-house-fill"></i>
-						<span>Home</span>
-					</a>
-				</li>
-
-				<a href="/questions" class="flex gap-3 items-center px-2 py-1 rounded hover:bg-[var(--color-bg)]">
-					<i class="ph ph-question"></i>
-					<span>Questions</span>
-				</a>
-				</li>
-				<li>
-					<a href="/tags" class="flex items-center gap-3 px-2 py-1 rounded hover:bg-[var(--color-bg)]">
-						<i class="ph ph-tag"></i>
-						<span>Tags</span>
-					</a>
-				</li>
-				<li>
-					<a href="/users" class="flex items-center gap-3 px-2 py-1 rounded hover:bg-[var(--color-bg)]">
-						<i class="ph ph-users"></i>
-						<span>Users</span>
-					</a>
-				</li>
-				<li>
-					<a href="/users/{{app.user.username}}"
-						class="flex items-center gap-3 px-2 py-1 rounded hover:bg-[var(--color-bg)]">
-						<i class="ph ph-user"></i>
-						<span>Profile</span>
-					</a>
-				</li>
-			</ul>
-
-
-			<h2 class="text-[var(--color-primary)] font-bold text-lg mt-6 mb-4">Tags</h2>
-			<div class="flex flex-wrap gap-2">
-				{% if app.contents.popularTags %}
-				
-					{% for tag in app.contents.popularTags %}
-						
-						
-						<a href="/tags/{{tag.id}}"
-							class="px-2 py-1 bg-[var(--color-bg)] text-[var(--color-secondary)] rounded hover:bg-[var(--color-primary)] hover:text-white text-sm">
-							{{tag.name}}
-						</a>
-
-					{% endfor %}
-					
-				{% endif %}
-				
-			</div>
-		</aside>
-
-		{% endif %}
-
-
-		<main class="main-content">
-			{% block content %}{% endblock %}
-
-		</main>
+				</main>
+			</body>
+		</html>
 	</div>
-
-
 
 
 	{# JS Libraries #}
 	<script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
 
 	{% block scripts %}{% endblock %}
-</body>
-
-</html>
+</body></html>

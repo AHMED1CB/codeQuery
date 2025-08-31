@@ -25,8 +25,6 @@ Router::new('/questions/:question' , "GET" , [QuestionsController::class , 'show
 Router::new('/tags' , "GET" , [RoutesController::class , 'tagsPage']);
 
 // Users
-Router::new('/users' , "GET" , [RoutesController::class , 'usersPage']);
-
 Router::new('/users/:user' , "GET" , [RoutesController::class , 'userProfile']);
 
 
@@ -38,6 +36,11 @@ Router::new('/auth/login' , "GET" , [RoutesController::class , 'loginPage']);
 Router::new('/auth/register' , "POST" , [AuthController::class , 'RegisterUser']);
 Router::new('/auth/login' , "POST" , [AuthController::class , 'LoginUser']);
 
+
+
+// Settings
+
+Router::new('/settings' , "GET" , [RoutesController::class , 'settingsPage']);
 
 
 

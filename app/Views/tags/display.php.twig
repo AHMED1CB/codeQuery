@@ -26,7 +26,6 @@
 		<!-- Tags Grid -->
 		<div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
 
-			{# {% if app.contents. %}{% endif %} #}
 			<!-- Tag 1 -->
 				{% if app.contents.tags %}
 					{% for tag in app.contents.tags %}
@@ -51,9 +50,9 @@
 		</div>
 
 		<!-- Pagination -->
-		<div class="mt-8 flex justify-center space-x-2">
+		<div class="mt-8 pagination flex justify-center space-x-2">
 			{% for i in 1..app.contents.pages %}
-				<a href="?{{urlParam('p' , i)}}" class="px-4 py-2 bg-[var(--color-secondary)] rounded hover:bg-[var(--color-border)] transition text-[var(--color-text)]">{{i}}</a>
+				<a href="?{{urlParam('p' , i)}}" class="px-4 py-2  rounded hover:bg-[var(--color-border)] transition text-[var(--color-text)]">{{i}}</a>
 
 			{% endfor %}
 		</div>
