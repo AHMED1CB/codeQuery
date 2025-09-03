@@ -43,7 +43,7 @@
 					{% if app.user %}
 
 						<a class="mx-2 p-2 cursor-pointer  flex items-center justify-center">
-							<img class="w-8 h-8  mr-3" src="{{storage('images/' ~ app.user.avatar)}}" alt="">
+							<img class="w-8 h-8  mr-3 rounded-full" src="{{storage('images/' ~ app.user.avatar)}}" alt="">
 							<span class="userrname">{{app.user.full_name}}</span>
 						</a>
 
@@ -121,7 +121,8 @@
 			{% endif %}
 
 
-			<main class="main-content"> {% block content %}{% endblock %}
+			<main class="main-content"> 
+			{% block content %}{% endblock %}
 
 			</main>
 	

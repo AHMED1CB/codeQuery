@@ -3,12 +3,16 @@
 namespace App\Core;
 
 class Request{
-    static public function input(string $name = ''){
+    static public function input(string $name = '' , bool $escape=True){
 
         $phpinput = json_decode(file_get_contents('php://input') , true) ?? [];
-        $_rqst = $_REQUEST + $phpinput;
+        $_rqst = array_merge($phpinput , $_REQUEST);
 
-        return htmlspecialchars($_rqst[$name] ?? '');    
+        if ($escape){
+            return htmlspecialchars($_rqst[$name] ?? '');
+        }else{
+            return $_rqst[$name] ?? '';
+        }
 
     }
 
@@ -20,7 +24,7 @@ class Request{
 
         foreach($names as $name){
 
-            $group[$name] = htmlspecialchars(self::input($name));
+            $group[$name] = self::input($name);
 
         }
 

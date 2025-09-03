@@ -79,9 +79,10 @@
 					<div class="bg-[var(--color-card-bg)] p-5  rounded-xl shadow hover:shadow-lg transition flex items-center">
 						<img src="{{storage('lang/' ~ (tag.image ?? 'default.svg'))}}" alt="{{tag.name}}" class="w-10 h-10 mr-4">
 						<div>
-							<a href="/tags/{{tag.id}}" class="text-lg font-semibold text-white ">{{tag.name}}</a>
+							<a href="/questions/?t={{tag.name}}" class="text-lg font-semibold text-white ">{{tag.name}}</a>
 							<span class="text-gray-500 text-xs mt-1 block">{{tag.questions_count}}
-								questions</span>
+								questions
+							</span>
 						</div>
 					</div>
 

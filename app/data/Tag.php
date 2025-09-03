@@ -28,7 +28,7 @@ class Tag
 
         $query = "SELECT  t.*  , COUNT(DISTINCT  qt.id) as questions_count
                     FROM tags t
-                    LEFT JOIN question_tags qt ON qt.question_id = t.id
+                    LEFT JOIN question_tags qt ON qt.tag_id = t.id
                     GROUP BY t.id
                     ORDER BY questions_count DESC
                     LIMIT $limit

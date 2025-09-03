@@ -93,6 +93,9 @@ class RoutesController extends Controller {
     }
 
     public function askPage(){
+        if(empty($this->app['user'])){
+            return $this->display("404");
+        }
         return $this->display('question.ask' , ['app' => $this->app]);
     }
 

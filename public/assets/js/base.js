@@ -1,7 +1,9 @@
-const mode = localStorage.mode ?? "light";
-document.body.classList.toggle(mode);
+(() => {
+  const mode = localStorage.mode ?? "light";
+  document.body.classList.toggle(mode);
+})();
 
-function showModalMessage(title , message , icon) {
+function showModalMessage(title, message, icon = "error") {
   Swal.fire({
     icon: icon,
     text: message,

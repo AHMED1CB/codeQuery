@@ -36,8 +36,9 @@ class Question
 
         $results = DB::query($query)->fetchAll(\PDO::FETCH_ASSOC);
 
-        array_map(function ($question) {
+        $results = array_map(function ($question) {
             $question['creation_date'] = Carbon::make($question['created_at'])->diffForHumans();
+            return $question;
         }, $results);
 
         return $results;

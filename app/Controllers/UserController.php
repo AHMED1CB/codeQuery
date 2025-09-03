@@ -13,10 +13,16 @@ class UserController extends Controller
 {
 
 
+    public function __construct()
+    {
+        header("Content-Type: application/json");
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: POST");
+    }
+
 
     public function update()
     {
-        header("Content-Type: Application/json");
         $current_user_id = Session::get("CQ_APP_AUTH");
 
         $data = [];
@@ -36,6 +42,20 @@ class UserController extends Controller
         }
 
 
+        if (isset($data['username'])) {
+
+            $userExists = DB::table('users')->where('username', $data['username'])->first();
+
+            if ($userExists) {
+
+                return Response::display([
+                    'error' => 'Username Already been Taken'
+                ]);
+
+            }
+
+
+        }
 
         if (Request::hasFile('avatar')) {
 
@@ -73,7 +93,8 @@ class UserController extends Controller
         }
 
         return Response::display([
-            "message" => 'Nothing To Update'
+            "message" => 'Nothing To Update',
+            
         ]);
 
 

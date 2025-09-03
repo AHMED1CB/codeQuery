@@ -19,7 +19,11 @@ Router::new('/' , "GET" , [RoutesController::class , 'mainPage']);
 Router::new('/questions' , "GET" , [RoutesController::class , 'questionsPage']);
 Router::new('/ask' , "GET" , [RoutesController::class , 'askPage']);
 
+
 Router::new('/questions/:question' , "GET" , [QuestionsController::class , 'showQuestion']);
+
+Router::new('/ask' , "POST" , [QuestionsController::class , 'store']);
+
 
 
 // Tags
