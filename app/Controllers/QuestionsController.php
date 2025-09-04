@@ -6,6 +6,7 @@ use App\Core\DB;
 use App\Core\Request;
 use App\Core\Response;
 use App\Core\Session;
+use App\Data\Question;
 
 
 
@@ -14,18 +15,13 @@ class QuestionsController extends Controller
 {
 
 
-    public function showQuestion($id)
-    {
-        return $this->display('question.show');
-
-    }
+    
 
     public function store()
     {
         header("Content-Type: application/json");
         header("Access-Control-Allow-Origin: *");
         header("Access-Control-Allow-Methods: POST");
-
 
         $tags = Request::input("tags", False);
         $title = Request::input("title");
@@ -79,6 +75,14 @@ class QuestionsController extends Controller
                 ]);
 
             }
+
+            // Update reputation of User; 
+            $currentReputation = DB::table('users')->where('id' , Session::get('CQ_APP_AUTH'))->first() -> reputation ;
+
+            DB::table('users')->where('id', Session::get('CQ_APP_AUTH'))->update([
+                'reputation' =>  $currentReputation + 5
+            ]);
+
 
             return Response::display([
                 'message' => "Question Created Successfully"

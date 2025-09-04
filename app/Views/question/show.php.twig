@@ -8,90 +8,85 @@
 
 {% block content %}
 	<section
-		class="max-w-4xl mx-auto p-6 bg-[var(--color-card-bg)] border border-[var(--color-border)] rounded-xl shadow space-y-8">
-		<!-- Question Header -->
-		<div>
-			<h1 class="text-2xl font-bold text-[var(--color-primary)] mb-3">
-				How to connect PHP with MySQL?
+		class="max-w-6xl mx-auto py-10 px-4 grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-10">
+
+		<!-- Question Sidebar -->
+		<aside class="bg-[var(--color-card-bg)] border border-[var(--color-border)]  rounded-xl shadow-md p-6 h-fit">
+			<h1 class="text-2xl font-bold text-[var(--color-text)] mb-4 ">
+				{{question.details.title}}
 			</h1>
-			<div class="flex items-center gap-3 text-sm text-[var(--color-text)]/70">
-				<img src="https://i.pravatar.cc/40" class="w-8 h-8 rounded-full border" alt="User">
-				<span>Ahmed Hassan</span>
-				<span>•</span>
-				<span>Asked on Aug 20, 2025</span>
-			</div>
-		</div>
+			<p class="text-[var(--color-text)] leading-relaxed mb-6">
+				{{question.details.description}}
+			</p>
 
-		<!-- Description -->
-		<div class="prose prose-invert max-w-none">
-			<p>I am trying to connect my
-				<code>PHP</code>
-				application with a
-				<code>MySQL</code>
-				database.</p>
-			<p>What is the recommended way to establish the connection securely?</p>
-			<pre><code class="language-php">
-// Example connection
-$pdo = new PDO("mysql:host=localhost;dbname=test", "root", "password");
-    </code></pre>
-		</div>
+			<!-- Tags -->
+			<div class="flex flex-wrap gap-2 mb-6">
 
-		<!-- Tags -->
-		<div class="flex flex-wrap gap-2">
-			<span class="px-3 py-1 bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-sm rounded-full">php</span>
-			<span class="px-3 py-1 bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-sm rounded-full">mysql</span>
-			<span class="px-3 py-1 bg-[var(--color-primary)]/10 text-[var(--color-primary)] text-sm rounded-full">database</span>
-		</div>
-
-		<!-- Share -->
-		<div class="flex items-center gap-4">
-			<button class="text-sm text-[var(--color-primary)] hover:underline">Share</button>
-			<button class="text-sm text-[var(--color-primary)] hover:underline">Edit</button>
-			<button class="text-sm text-red-500 hover:underline">Report</button>
-		</div>
-
-		<!-- Answers Section -->
-		<div class="space-y-6">
-			<h2 class="text-xl font-semibold text-[var(--color-text)]">2 Answers</h2>
-
-			<!-- Answer 1 -->
-			<div class="p-4 bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg space-y-3">
-				<div class="prose prose-invert max-w-none">
-					<p>You can use PDO which is secure and flexible.</p>
-					<pre><code class="language-php">
-$pdo = new PDO("mysql:host=localhost;dbname=test", "root", "password");
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        </code></pre>
-				</div>
-				<div class="flex items-center gap-3 text-sm text-[var(--color-text)]/70">
-					<img src="https://i.pravatar.cc/35" class="w-7 h-7 rounded-full border" alt="User">
-					<span>Mohamed Ali</span>
-					<span>•</span>
-					<span>Answered on Aug 22, 2025</span>
-				</div>
+				{% for tag in question.tags %}
+					<span class="px-3 py-1 rounded-lg text-sm bg-[var(--color-primary)] text-white">{{tag.name}}</span>
+				{% endfor %}
 			</div>
 
-			<!-- Answer 2 -->
-			<div class="p-4 bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg space-y-3">
-				<div class="prose prose-invert max-w-none">
-					<p>If you don’t need PDO, you can use
-						<code>mysqli</code>
-						instead.</p>
-					<pre><code class="language-php">
-$conn = new mysqli("localhost", "root", "password", "test");
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-        </code></pre>
-				</div>
-				<div class="flex items-center gap-3 text-sm text-[var(--color-text)]/70">
-					<img src="https://i.pravatar.cc/36" class="w-7 h-7 rounded-full border" alt="User">
-					<span>Sarah Ahmed</span>
-					<span>•</span>
-					<span>Answered on Aug 23, 2025</span>
+			<!-- Votes -->
+			<div class="flex items-center gap-3 mb-6">
+				<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-[var(--color-bg)] border border-[var(--color-border)] hover:bg-[var(--color-primary)] hover:text-white text-[var(--color-primary)]">
+					<i class="ph ph-arrow-fat-up{{question.details.user_vote == 'UP' ? '-fill' : ''}}"></i>
+				</button>
+				<span class="text-[var(--color-text)] font-semibold text-xl">{{question.details.total_votes}}</span>
+				<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-[var(--color-bg)] border border-[var(--color-border)] hover:bg-[var(--color-accent)] hover:text-white text-[var(--color-primary)]">
+					<i class="ph ph-arrow-fat-down{{question.details.user_vote == 'DOWN' ? '-fill' : ''}}"></i>
+				</button>
+			</div>
+
+			<!-- Author -->
+			<div class="flex items-center gap-3">
+				<img src="{{storage('images/' ~ question.details.avatar)}}" alt="User Avatar" class="w-12 h-12 rounded-full border border-[var(--color-border)]">
+				<div>
+					<p class="text-sm font-medium text-[var(--color-text)]">{{question.details.full_name}}</p>
+					<p class="text-xs text-gray-500">asked
+						{{question.details.creation_date}}</p>
 				</div>
 			</div>
+		</aside>
+
+		<!-- Answers Column -->
+		<div class="flex flex-col h-[80vh]">
+			<h2 class="text-xl font-semibold text-[var(--color-text)] mb-4">Answers</h2>
+
+			<!-- Scrollable Answers -->
+			<div class="flex-1 overflow-y-auto space-y-6 pr-2">
+
+				{% for answer in question.answers %}
+
+					<div class="bg-[var(--color-card-bg)] border border-[var(--color-border)] rounded-xl shadow-md p-6">
+						<p class="text-[var(--color-text)] leading-relaxed mb-4">{{answer.answer}}</p>
+						<div class="flex items-center gap-3">
+							<img src="{{storage("images/" ~ answer.avatar)}}" alt="User Avatar" class="w-8 h-8 rounded-full border border-[var(--color-border)]">
+							<p class="text-sm text-[var(--color-text)]">{{answer.username}}</p>
+						</div>
+					</div>
+				{% endfor %}
+
+				{% if not question.answers %}
+					<h2 class="text-center text-lg w-full font-bold">No Answers</h2>
+				{% endif %}
+
+
+			</div>
+			{% if app.user %}
+				<!-- Add Answer -->
+				<div class="mt-6 bg-[var(--color-card-bg)] border border-[var(--color-border)] rounded-xl shadow-md p-6">
+					<h3 class="text-lg font-semibold text-[var(--color-text)] mb-4">Your Answer</h3>
+					<textarea class="w-full h-32 rounded-lg border border-[var(--color-border)] bg-[var(--color-bg)] text-[var(--color-text)] p-3 mb-4 focus:ring-2 focus:ring-[var(--color-primary)]" placeholder="Write your answer here..."></textarea>
+					<button class="px-6 py-2 rounded-lg bg-[var(--color-primary)] text-white hover:bg-[var(--color-accent)]">
+						Post Your Answer
+					</button>
+				</div>
+
+			{% endif %}
+
 		</div>
 	</section>
+
 
 {% endblock %}

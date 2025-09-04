@@ -20,7 +20,7 @@ Router::new('/questions' , "GET" , [RoutesController::class , 'questionsPage']);
 Router::new('/ask' , "GET" , [RoutesController::class , 'askPage']);
 
 
-Router::new('/questions/:question' , "GET" , [QuestionsController::class , 'showQuestion']);
+Router::new('/questions/:question' , "GET" , [RoutesController::class , 'showQuestion']);
 
 Router::new('/ask' , "POST" , [QuestionsController::class , 'store']);
 

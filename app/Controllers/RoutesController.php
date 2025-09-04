@@ -3,9 +3,11 @@
 namespace App\Controllers;
 use App\Core\Request;
 use App\Core\Session;
+use App\Core\DB;
 use App\Data\Tag;
 use App\Data\User;
 use App\Data\Question;
+
 
 class RoutesController extends Controller {
     protected $user;
@@ -26,7 +28,10 @@ class RoutesController extends Controller {
             $this->app['user'] = $user;
 
 
+
+
         }
+        
 
 
         // Top Questions
@@ -81,6 +86,23 @@ class RoutesController extends Controller {
         return $this->display('tags.display' , ['app' => $this->app]);
     }
 
+
+    public function showQuestion($id)
+    {
+
+        $QExists = DB::table('questions')->where('id' , $id)->first();
+
+        if (!empty($QExists)){
+            $questionData = Question::find($id);
+
+            return $this->display('question.show' , ['question' => $questionData , 'app' => $this->app]);
+
+        }else{
+             $this->display('404' , ['app' => $this->app]);
+        }
+
+
+    }
   
 
      public function userProfile($username){

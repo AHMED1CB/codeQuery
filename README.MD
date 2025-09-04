@@ -81,23 +81,11 @@ It allows programmers to ask coding questions, share answers, and earn reputatio
 
 ---
 
-## 🗂 Database Schema (Overview)
-
-- **users** → id, name, email, password, reputation.  
-- **questions** → id, user_id, title, body, views.  
-- **answers** → id, question_id, user_id, body, is_accepted.  
-- **tags** → id, name.  
-- **question_tags** → question_id, tag_id.  
-- **votes** → id, user_id, parent_id, parent_type, vote_type.  
-- **notifications** → id, user_id, type, message, read_at.  
-
----
-
 ## ⚙️ Tech Stack
 
 - **Backend:** PHP And Libraries  
 - **Database:** MySQL/MariaDB.  
-- **Frontend:** HTML, CSS, JavaScript, Tailwind.  
+- **Frontend:** HTML, CSS, JavaScript, Tailwind , sweetalert , highlightjs
 
 ---
 

@@ -1,6 +1,7 @@
 <?php
 namespace App\Data;
 use App\Core\DB;
+use App\Core\Session;
 use \Carbon\Carbon;
 
 
@@ -19,7 +20,56 @@ class Question
 
     static public function find($id)
     {
-        return DB::table('questions')->where('id', $id)->first();
+
+        $userId = Session::has("CQ_APP_AUTH") ? Session::get("CQ_APP_AUTH") : -1;
+        $bindings = [$userId, $id];
+
+        $query = "SELECT q.title , q.description , q.created_at ,u.avatar , u.username , u.full_name ,  u.avatar,   
+                  COALESCE(SUM(CASE WHEN v.type = 'UP' THEN 1 WHEN v.type = 'DOWN' THEN -1 ELSE 0 END), 0) AS total_votes,
+
+            (
+
+                SELECT v0.type
+                FROM votes v0 
+                WHERE v0.user_id = ? AND v0.question_id = q.id
+
+            ) AS user_vote 
+            FROM questions q
+
+            LEFT JOIN users u ON u.id = q.creator_id
+            LEFT JOIN votes v ON v.question_id = q.id
+
+            WHERE q.id = ?
+            GROUP BY q.id
+        ";
+
+
+
+        $answers = DB::query("SELECT a.* , u.username , u.avatar , u.full_name   FROM answers a 
+        
+                            LEFT JOIN users u ON u.id = a.creator_id
+
+                        WHERE a.question_id = ? 
+        ", [$id])->fetchAll(\PDO::FETCH_ASSOC);
+
+        $data = [];
+
+        $question = DB::query($query, $bindings)->fetchObject();
+
+        $question->creation_date = Carbon::make($question->created_at)->diffForHumans();
+        $data['details'] = $question;
+
+        
+        $data['answers'] = $answers;
+        $tags = "SELECT t.name FROM question_tags qt 
+        
+                LEFT JOIN tags t ON qt.tag_id = t.id
+
+                WHERE qt.question_id = ?  
+        ";
+
+        $data['tags'] = DB::query($tags , [$id])->fetchAll(\PDO::FETCH_ASSOC);
+        return $data;
     }
 
     static public function get_popular($limit)
@@ -54,6 +104,7 @@ class Question
 
         // User Is Able to use one filter
         $offset = max((int) $page - 1, 0) * $items_per_page;
+
 
         $binds = [];
 
@@ -101,7 +152,7 @@ class Question
                 LEFT JOIN tags t ON t.id = qt.tag_id";
 
         $count_binds = [];
-        
+
         if (!empty($options['tag'])) {
             $count_query .= " WHERE t.name = ?";
             $count_binds[] = $options['tag'];

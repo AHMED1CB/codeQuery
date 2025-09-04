@@ -45,7 +45,7 @@
 								<span class="text-sm text-gray-400">{{question.votes_count}}
 									votes</span>
 							</div>
-							<a href="/question/{{question.id}}" class="block text-xl font-semibold text-white">
+							<a href="/questions/{{question.id}}" class="block text-xl font-semibold text-white">
 								{{question.title}}
 							</a>
 							<div class="question-details flex flex-col items-start">
@@ -77,8 +77,8 @@
 					{{page}}
 				</a>
 			{% endfor %}
-			{% else %}
-				<h2 class="text-xl w-full text-center font-bold">No Questions</h2>
+		{% else %}
+			<h2 class="text-xl w-full text-center font-bold">No Questions</h2>
 		{% endif %}
 
 	</div>

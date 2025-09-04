@@ -45,49 +45,6 @@
 			</p>
 		</div>
 
-		{# <!-- Recent Activity -->
-										<div class="bg-[var(--color-card-bg)] p-6 rounded-xl shadow border border-[var(--color-border)] mb-6">
-											<h2 class="text-2xl font-bold text-[var(--color-primary)] mb-4">Recent Activity</h2>
-								
-											<!-- Activity List -->
-											<ul class="space-y-4">
-												<li class="flex justify-between items-center p-3 bg-[var(--color-bg)] rounded hover:bg-[var(--color-primary)]/10 transition">
-													<div>
-														<span class="font-semibold">Answered:</span>
-														How to use Twig with PHP?
-													</div>
-													<span class="text-gray-400 text-xs">2 hours ago</span>
-												</li>
-												<li class="flex justify-between items-center p-3 bg-[var(--color-bg)] rounded hover:bg-[var(--color-primary)]/10 transition">
-													<div>
-														<span class="font-semibold">Asked:</span>
-														Best practices for Node.js routing
-													</div>
-													<span class="text-gray-400 text-xs">1 day ago</span>
-												</li>
-												<li class="flex justify-between items-center p-3 bg-[var(--color-bg)] rounded hover:bg-[var(--color-primary)]/10 transition">
-													<div>
-														<span class="font-semibold">Commented:</span>
-														On JavaScript async/await explanation
-													</div>
-													<span class="text-gray-400 text-xs">3 days ago</span>
-												</li>
-											</ul>
-								
-										</div> #}
-
-		{# <!-- User Tags -->
-										<div class="bg-[var(--color-card-bg)] p-6 rounded-xl shadow border border-[var(--color-border)] mb-6">
-											<h2 class="text-2xl font-bold text-[var(--color-primary)] mb-4">Top Tags</h2>
-											<div class="flex flex-wrap gap-2">
-												<span class="bg-[var(--color-bg)] px-3 py-1 rounded-full text-[var(--color-text)] hover:bg-[var(--color-primary)] hover:text-white cursor-pointer">PHP</span>
-												<span class="bg-[var(--color-bg)] px-3 py-1 rounded-full text-[var(--color-text)] hover:bg-[var(--color-primary)] hover:text-white cursor-pointer">JavaScript</span>
-												<span class="bg-[var(--color-bg)] px-3 py-1 rounded-full text-[var(--color-text)] hover:bg-[var(--color-primary)] hover:text-white cursor-pointer">Python</span>
-												<span class="bg-[var(--color-bg)] px-3 py-1 rounded-full text-[var(--color-text)] hover:bg-[var(--color-primary)] hover:text-white cursor-pointer">Node.js</span>
-											</div>
-										</div> #}
-
-
 		<!-- User Questions Section -->
 			<div class="bg-[var(--color-card-bg)] p-6 rounded-xl shadow border border-[var(--color-border)] mb-6"> <h2 class="text-2xl font-bold text-[var(--color-primary)] mb-4">User's Questions</h2>
 
@@ -96,7 +53,7 @@
 				{% for question in app.contents.profile.questions  %}
 
 					<div class="bg-[var(--color-bg)] p-4 rounded-xl shadow border border-[var(--color-border)] hover:shadow-lg transition">
-						<a href="#" class="text-lg font-semibold hover:text-[var(--color-accent)] cursor-pointer">{{question.title}}</a>
+						<a href="/questions/{{question.id}}" class="text-lg font-semibold hover:text-[var(--color-accent)] cursor-pointer">{{question.title}}</a>
 						<div class="text-xs text-gray-400 mt-1">
 							{{question.answers_count}}
 							answers •
