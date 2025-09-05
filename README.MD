@@ -63,22 +63,6 @@ It allows programmers to ask coding questions, share answers, and earn reputatio
 - `DELETE /answers/{id}` → Delete an answer.  
 - `POST /answers/{id}/accept` → Accept an answer.  
 
-### 👍 Voting
-- `POST /questions/{id}/vote` → Vote on a question.  
-- `POST /answers/{id}/vote` → Vote on an answer.  
-
-### 🏷 Tags
-- `GET /tags` → List all tags.  
-- `GET /tags/{name}` → View questions by tag.  
-
-### 💬 Comments
-- `POST /questions/{id}/comments` → Add comment to a question.  
-- `POST /answers/{id}/comments` → Add comment to an answer.  
-- `DELETE /comments/{id}` → Delete a comment.  
-
-### 🔔 Notifications
-- `GET /notifications` → List all user notifications.  
-
 ---
 
 ## ⚙️ Tech Stack
