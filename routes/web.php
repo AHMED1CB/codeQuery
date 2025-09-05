@@ -21,6 +21,8 @@ Router::new('/ask' , "GET" , [RoutesController::class , 'askPage']);
 
 
 Router::new('/questions/:question' , "GET" , [RoutesController::class , 'showQuestion']);
+Router::new('/questions/:question/vote' , "POST" , [QuestionsController::class , 'vote']);
+Router::new('/questions/:question/answer' , "POST" , [QuestionsController::class , 'answer']);
 
 Router::new('/ask' , "POST" , [QuestionsController::class , 'store']);
 

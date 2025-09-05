@@ -32,7 +32,7 @@ class Question
                 SELECT v0.type
                 FROM votes v0 
                 WHERE v0.user_id = ? AND v0.question_id = q.id
-
+                LIMIT 1
             ) AS user_vote 
             FROM questions q
 

@@ -15,7 +15,7 @@ class QuestionsController extends Controller
 {
 
 
-    
+
 
     public function store()
     {
@@ -77,10 +77,10 @@ class QuestionsController extends Controller
             }
 
             // Update reputation of User; 
-            $currentReputation = DB::table('users')->where('id' , Session::get('CQ_APP_AUTH'))->first() -> reputation ;
+            $currentReputation = DB::table('users')->where('id', Session::get('CQ_APP_AUTH'))->first()->reputation;
 
             DB::table('users')->where('id', Session::get('CQ_APP_AUTH'))->update([
-                'reputation' =>  $currentReputation + 5
+                'reputation' => $currentReputation + 5
             ]);
 
 
@@ -99,6 +99,103 @@ class QuestionsController extends Controller
 
 
     }
+
+
+    public function vote($question)
+    {
+        header("Content-Type: application/json");
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: POST");
+
+        $voteType = strtoupper(Request::input("vote"));
+        $userId = Session::get('CQ_APP_AUTH');
+
+        $getTotalVotes = function () use ($question) {
+            return DB::query("
+            SELECT COALESCE(SUM(
+                CASE 
+                    WHEN type = 'UP' THEN 1 
+                    WHEN type = 'DOWN' THEN -1 
+                    ELSE 0 
+                END
+            ), 0) AS total_votes
+            FROM votes
+            WHERE question_id = ?
+        ", [$question])->fetchObject()->total_votes;
+        };
+
+        $vote = DB::table('votes')
+            ->where("question_id", $question)
+            ->where('user_id', $userId)
+            ->first();
+
+        if ($vote) {
+            if ($vote->type !== $voteType) {
+                DB::table('votes')
+                    ->where("question_id", $question)
+                    ->where('user_id', $userId)
+                    ->update(['type' => $voteType]);
+
+                return Response::display([
+                    'message' => "Vote Changed Successfully",
+                    'currentVote' => $voteType,
+                    'totalVotes' => $getTotalVotes()
+                ]);
+            }
+
+            DB::table('votes')
+                ->where("question_id", $question)
+                ->where('user_id', $userId)
+                ->delete();
+
+            return Response::display([
+                'message' => "Vote Deleted Successfully",
+                'currentVote' => null,
+                'totalVotes' => $getTotalVotes()
+            ]);
+        }
+
+        DB::table('votes')->insert([
+            "question_id" => $question,
+            "user_id" => $userId,
+            "type" => $voteType
+        ]);
+
+        return Response::display([
+            'message' => "Vote Created Successfully",
+            'currentVote' => $voteType,
+            'totalVotes' => $getTotalVotes()
+        ]);
+    }
+
+
+    public function answer($question)
+    {
+
+        header("Content-Type: application/json");
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: POST");
+
+
+        $answerContent = Request::input('answer');
+
+        // Store The Answer
+
+        DB::table("answers")->insert([
+            "creator_id" => Session::get("CQ_APP_AUTH"),
+            "question_id" => $question,
+            "answer" => $answerContent 
+        ]);
+
+
+        return Response::display([
+            "message" => "Answer Created Successfully"
+        ]);
+
+
+
+    }
+
 
 
 }

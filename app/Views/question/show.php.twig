@@ -29,11 +29,11 @@
 
 			<!-- Votes -->
 			<div class="flex items-center gap-3 mb-6">
-				<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-[var(--color-bg)] border border-[var(--color-border)] hover:bg-[var(--color-primary)] hover:text-white text-[var(--color-primary)]">
+				<button  id="vup" class="w-10 h-10 flex items-center justify-center rounded-lg bg-[var(--color-bg)] border border-[var(--color-border)] hover:bg-[var(--color-primary)] hover:text-white text-[var(--color-primary)]">
 					<i class="ph ph-arrow-fat-up{{question.details.user_vote == 'UP' ? '-fill' : ''}}"></i>
 				</button>
-				<span class="text-[var(--color-text)] font-semibold text-xl">{{question.details.total_votes}}</span>
-				<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-[var(--color-bg)] border border-[var(--color-border)] hover:bg-[var(--color-accent)] hover:text-white text-[var(--color-primary)]">
+				<span id="totalVotes" class="text-[var(--color-text)] font-semibold text-xl">{{question.details.total_votes}}</span>
+				<button id="vdown" class="w-10 h-10 flex items-center justify-center rounded-lg bg-[var(--color-bg)] border border-[var(--color-border)] hover:bg-[var(--color-accent)] hover:text-white text-[var(--color-primary)]">
 					<i class="ph ph-arrow-fat-down{{question.details.user_vote == 'DOWN' ? '-fill' : ''}}"></i>
 				</button>
 			</div>
@@ -88,5 +88,12 @@
 		</div>
 	</section>
 
+
+{% endblock %}
+
+
+{% block scripts %}
+
+	<script src="{{asset('js/questionActions.js')}}"></script>
 
 {% endblock %}
