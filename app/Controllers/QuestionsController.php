@@ -24,8 +24,8 @@ class QuestionsController extends Controller
         header("Access-Control-Allow-Methods: POST");
 
         $tags = Request::input("tags", False);
-        $title = Request::input("title");
-        $desc = Request::input("desc");
+        $title = Request::input("title" , False);
+        $desc = Request::input("desc" , False);
 
 
         // Insert Tags If Not Exists

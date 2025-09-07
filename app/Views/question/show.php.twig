@@ -8,16 +8,17 @@
 
 {% block content %}
 	<section
-		class="max-w-6xl mx-auto py-10 px-4 grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-10">
+		class="max-w-6xl  mx-auto py-10 px-4 grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-10">
 
 		<!-- Question Sidebar -->
 		<aside class="bg-[var(--color-card-bg)] border border-[var(--color-border)]  rounded-xl shadow-md p-6 h-fit">
 			<h1 class="text-2xl font-bold text-[var(--color-text)] mb-4 ">
 				{{question.details.title}}
 			</h1>
-			<p class="text-[var(--color-text)] leading-relaxed mb-6">
+
+			<div class="text-[var(--color-text)] leading-relaxed mb-6" id="question_desc" >
 				{{question.details.description}}
-			</p>
+			</div>
 
 			<!-- Tags -->
 			<div class="flex flex-wrap gap-2 mb-6">
@@ -28,6 +29,7 @@
 			</div>
 
 			<!-- Votes -->
+			{% if app.user %}
 			<div class="flex items-center gap-3 mb-6">
 				<button  id="vup" class="w-10 h-10 flex items-center justify-center rounded-lg bg-[var(--color-bg)] border border-[var(--color-border)] hover:bg-[var(--color-primary)] hover:text-white text-[var(--color-primary)]">
 					<i class="ph ph-arrow-fat-up{{question.details.user_vote == 'UP' ? '-fill' : ''}}"></i>
@@ -37,12 +39,13 @@
 					<i class="ph ph-arrow-fat-down{{question.details.user_vote == 'DOWN' ? '-fill' : ''}}"></i>
 				</button>
 			</div>
+			{% endif %}
 
 			<!-- Author -->
 			<div class="flex items-center gap-3">
 				<img src="{{storage('images/' ~ question.details.avatar)}}" alt="User Avatar" class="w-12 h-12 rounded-full border border-[var(--color-border)]">
 				<div>
-					<p class="text-sm font-medium text-[var(--color-text)]">{{question.details.full_name}}</p>
+					<p class="text-sm font-medium text-[var(--color-text)]">{{question.details.username}}</p>
 					<p class="text-xs text-gray-500">asked
 						{{question.details.creation_date}}</p>
 				</div>
@@ -95,5 +98,6 @@
 {% block scripts %}
 
 	<script src="{{asset('js/questionActions.js')}}"></script>
+	<script src="{{asset('js/questionMark.js')}}"></script>
 
 {% endblock %}

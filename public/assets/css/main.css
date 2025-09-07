@@ -95,3 +95,25 @@ aside.sidebar{
     background-color: var(--color-card-bg);
     color: var(--color-text);
 }
+
+#question_desc {
+  max-width: 600px;   
+  word-wrap: break-word;
+  overflow-x: auto;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+#question_desc pre , code{
+  padding: 10px;
+  border-radius: 6px;
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+#question_desc h1, 
+#question_desc h2, 
+#question_desc h3 {
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
